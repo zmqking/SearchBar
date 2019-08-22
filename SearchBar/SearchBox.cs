@@ -3,6 +3,7 @@ using SearchBar.Enums;
 using SearchBar.Interface;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Windows.Forms;
 
 namespace SearchBar
@@ -12,7 +13,7 @@ namespace SearchBar
         public SearchBox()
         {
             InitializeComponent();
-            this.ControlBox = false;   // 设置不出现关闭按钮
+            //this.ControlBox = false;   // 设置不出现关闭按钮
         }
 
         private const int WINDOW_BORDER_HEIGHT = 35;
@@ -322,14 +323,14 @@ namespace SearchBar
             List<string> listOperator = new List<string>();
             List<string> listNum = new List<string>();
 
-            int counts = str.Length;
-            string num = string.Empty;
-            for (int i = 0; i < counts; i++)
+            int calc_counts = str.Length;
+            StringBuilder num = new StringBuilder();
+            for (int i = 0; i < calc_counts; i++)
             {
                 string s = str[i].ToString();
                 if (i == 0)
                 {
-                    num = s;
+                    num.Append(s);
                 }
                 else
                 {
@@ -339,23 +340,23 @@ namespace SearchBar
                         //指针还没有到首位，并且前一位还是是操作符，说明是负数来的
                         if (isOperator(str[i - 1].ToString()))
                         {
-                            num += s;
+                            num.Append(s);
                         }
                         else
                         {
                             listOperator.Add(s);
-                            listNum.Add(num);
-                            num = string.Empty;
+                            listNum.Add(num.ToString());
+                            num.Clear();
                         }
                     }
                     else
                     {
-                        num += s;
+                        num.Append(s);
                     }
                     //最后一个数加进来
-                    if (i == counts - 1)
+                    if (i == calc_counts - 1)
                     {
-                        listNum.Add(num);
+                        listNum.Add(num.ToString());
                     }
                 }
             }

@@ -35,11 +35,11 @@
             // txtContent
             // 
             this.txtContent.BackColor = System.Drawing.SystemColors.Control;
-            this.txtContent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtContent.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtContent.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtContent.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtContent.Location = new System.Drawing.Point(0, 0);
             this.txtContent.Name = "txtContent";
-            this.txtContent.Size = new System.Drawing.Size(484, 29);
+            this.txtContent.Size = new System.Drawing.Size(484, 22);
             this.txtContent.TabIndex = 0;
             this.txtContent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtContent_KeyDown);
             this.txtContent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContent_KeyPress);

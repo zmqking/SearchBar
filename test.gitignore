@@ -1,0 +1,10 @@
+# Compiled class file
+*.dll
+
+# Log file
+*.log
+
+# Package Files #
+*.pubxml
+*.pdb
+*.cache

@@ -55,7 +55,10 @@ namespace SearchBar
         /// <returns></returns>
         public static void saveSearchContent(this string str)
         {
-            FileOperation.saveSearchContent(str);
+            if (!string.IsNullOrWhiteSpace(str))
+            {
+                FileOperation.saveSearchContent(str);
+            }
         }
 
         /// <summary>

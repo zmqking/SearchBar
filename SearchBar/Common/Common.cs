@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SearchBar.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SearchBar.Common
 {
-    public class Common
+    static class Common
     {
         public static string GetLocalIP()
         {
@@ -34,6 +35,21 @@ namespace SearchBar.Common
                 MessageBox.Show("获取本机IP出错:" + ex.Message);
                 return "";
             }
-        }  
+        }
+
+        public static string getConfigValue(string key)
+        {
+            string res = string.Empty;
+            try
+            {
+                IReadConfig irf = CreateReadObj.getReadWay();
+                res = irf.getConfigValue(key);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return res;
+        }
     }
 }

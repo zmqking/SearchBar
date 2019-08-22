@@ -74,7 +74,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>wCQdeDbXy+UvMOspZIea5A90EqdnZ4KOVe3+VU4XK+A=</dsig:DigestValue>
+        <dsig:DigestValue>pHLn/nBcWSz+bUxr3ZIXuguPvVJP6E1BF4rAWCoUOfk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -96,13 +96,13 @@
       <dsig:DigestValue>ng3OvSy9/V21A7uMll8NdVAWdUG2biqwOHkZukGC+WM=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="SearchBar.exe.config" size="2592">
+  <file name="SearchBar.exe.config" size="2942">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>A+SvfIAYrVkr/kOeK4fWwaKw0qvntsPg0O4X4pjvcUk=</dsig:DigestValue>
+      <dsig:DigestValue>7ewxejqs9A9n5+NmHKH3MFDxp2JnophHG4uCtA2nD4w=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

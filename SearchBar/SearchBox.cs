@@ -3,14 +3,6 @@ using SearchBar.Enums;
 using SearchBar.Interface;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SearchBar
@@ -96,41 +88,37 @@ namespace SearchBar
             if (e.KeyChar == 13)
             {
                 string c = txtContent.Text.TrimEnd();
-                if (!stringJudge(c))
+                if (!stringJudge(c) && c.isNotEmpty())
                 {
-                    if (c.isNotEmpty())
+                    if (isUrlOrIp(c))
                     {
-                        if (isUrlOrIp(c))
+                        SearchContent(c);
+                    }
+                    else
+                    {
+                        string defaultKey = getConfigValue("default");
+                        int spaceIndex = c.IndexOf(" ");
+                        if (defaultKey == "close")
                         {
-                            SearchContent(c);
+                            if (spaceIndex > -1)
+                            {
+                                showSpecifySearch(c, spaceIndex, defaultKey);
+                            }
                         }
                         else
                         {
-                            string defaultKey = getConfigValue("default");
-                            int spaceIndex = c.IndexOf(" ");
-                            if (defaultKey == "close")
+                            //中间有空格
+                            if (spaceIndex > -1)
                             {
-                                if (spaceIndex > -1)
-                                {
-                                    showSpecifySearch(c, spaceIndex, defaultKey);
-                                }
+                                showSpecifySearch(c, spaceIndex, defaultKey);
                             }
                             else
                             {
-                                //中间有空格
-                                if (spaceIndex > -1)
-                                {
-                                    showSpecifySearch(c, spaceIndex, defaultKey);
-                                }
-                                else
-                                {
-                                    showDefaultSearch(c, defaultKey);
-                                }
+                                showDefaultSearch(c, defaultKey);
                             }
                         }
                     }
                 }
-                //txtContent.Text = string.Empty;
                 c.saveSearchContent();
             }
             else if (!this.txtContent.Text.isNotEmpty())
@@ -244,7 +232,7 @@ namespace SearchBar
             //确定使用什么功能的键
             string key = c.Substring(0, spaceIndex).ToLower();
 
-            if (ControlTypes.fy.ToString() == key)
+            if (ControlTypes.f.ToString() == key)
             {
                 string t = c.Substring(spaceIndex + 1);
                 try
@@ -254,7 +242,7 @@ namespace SearchBar
                 catch (Exception)
                 {
                 }
-                ICreateControl icc = CreateControlWithEnum.getShowControl(Enums.ControlTypes.fy);
+                ICreateControl icc = CreateControlWithEnum.getShowControl(Enums.ControlTypes.f);
                 TranslateTypes tt = TranslateTypes.English;
                 if (RegexJudge.isChinese(t))
                 {
@@ -296,7 +284,13 @@ namespace SearchBar
         private bool isUrlOrIp(string str)
         {
             bool flag = false;
-           
+
+            //判断是否有忽略的关键字
+            if(getConfigValue("IgnoreKeyWords").Contains(str))
+            {
+                return flag;
+            }
+
             if (str.isMatch(@"^((https|http|ftp|rtsp|mms)?(://)?)[^s]+") ||
                 str.isMatch(@"(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)"))
             {
@@ -328,7 +322,6 @@ namespace SearchBar
             List<string> listOperator = new List<string>();
             List<string> listNum = new List<string>();
 
-            //string str = "256,78,89,45.25";
             int counts = str.Length;
             string num = string.Empty;
             for (int i = 0; i < counts; i++)

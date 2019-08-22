@@ -15,16 +15,16 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          UAC 清单选项
-          如果要更改 Windows 用户帐户控制级别，请用以下节点之一替换
-          requestedExecutionLevel 节点。
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-          如果要利用文件和注册表虚拟化提供
-          向后兼容性，请删除 requestedExecutionLevel 节点。
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SearchBar.exe" size="71184">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SearchBar.exe" size="69632">
       <assemblyIdentity name="SearchBar" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ASETYjkmDc46p/GOFC37bl/WgKJjRVsu4r8jSXfIxDY=</dsig:DigestValue>
+        <dsig:DigestValue>6jhPn+hXFMFv3SzZ2Z4WYMaMxLOFgJtBYBhFxeGJKlE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -96,13 +96,13 @@
       <dsig:DigestValue>ng3OvSy9/V21A7uMll8NdVAWdUG2biqwOHkZukGC+WM=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="SearchBar.exe.config" size="1681">
+  <file name="SearchBar.exe.config" size="2942">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Z0VUIA56MAyluFzwDKv3JL1pIiMxJN66WtGF/zddSvo=</dsig:DigestValue>
+      <dsig:DigestValue>7ewxejqs9A9n5+NmHKH3MFDxp2JnophHG4uCtA2nD4w=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

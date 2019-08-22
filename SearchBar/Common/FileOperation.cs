@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SearchBar
 {
-    class FileOperation
+    static class FileOperation
     {
         static string path = System.Environment.CurrentDirectory + "\\Content\\history.txt";
         static string directory = System.Environment.CurrentDirectory + "\\Content";
@@ -16,7 +16,6 @@ namespace SearchBar
             try
             {
                 StreamWriter sw = null;
-                FileStream fs = null;
                 if (!Directory.Exists(directory))
                 {
                     Directory.CreateDirectory(directory);
@@ -33,7 +32,6 @@ namespace SearchBar
                 sw.Write(content);
                 sw.Flush();
                 sw.Close();
-                fs.Close();
             }
             catch (Exception)
             {
@@ -56,7 +54,6 @@ namespace SearchBar
                     string strs = sr.ReadToEnd();
                     if (strs.isNotEmpty())
                     {
-                        //string lastStr = strs.Substring(0, strs.LastIndexOf("\r\n"));
                         strs = strs.Replace("\r\n", ",");
                         string[] strLines = strs.Split(',');
                         if (index <= strLines.Length)
@@ -69,9 +66,9 @@ namespace SearchBar
                         }
                         c = strLines.Length;
                     }
+                    sr.Close();
+                    fs.Close();
                 }
-                sr.Close();
-                fs.Close();
             }
             catch (Exception)
             {

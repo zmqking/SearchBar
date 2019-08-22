@@ -13,7 +13,7 @@ namespace SearchBar.Enums
     {
         calc,
         search,
-        fy,
+        f,
         ip
     }
 }

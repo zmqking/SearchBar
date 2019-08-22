@@ -27,7 +27,7 @@ namespace SearchBar.Common
                 //    break;
                 //case ControlTypes.Search:
                 //    break;
-                case ControlTypes.fy:
+                case ControlTypes.f:
                     obj = new CreateTranslateControl();
                     break;
                 default:

@@ -5,7 +5,7 @@
     "av": "https://www.javbus.co/search/{q}",
     "dy": "http://www.dy8c.com/?s={q}",
     "tm": "https://list.tmall.com/search_product.htm?q={q}",
-    "jss": "http://www.jianshu.com/search?q={q}&page=1&type=note",
+    "j": "http://www.jianshu.com/search?q={q}&page=1&type=note",
     "wb": "http://s.weibo.com/weibo/{q}",
     "zh": "https://www.zhihu.com/search?type=content&q={q}",
     "db": "https://www.douban.com/search?q={q}",
@@ -21,5 +21,11 @@
     "v":"https://www.google.com/search?q=site:v2ex.com%20{q}",
     "ip":"http://ip.cn/index.php?ip={q}",
     "tie":"http://tieba.baidu.com/f/search/res?ie=utf-8&qw={q}",
-    "domainName": ".cn;.cx;.wang;.cc;.xin;.com;.net;.top;tech;.org;red;.pub;.ink;.info;.xyz;.win"
+    "domainName": ".cn;.cx;.wang;.cc;.xin;.com;.net;.top;tech;.org;red;.pub;.ink;.info;.xyz;.win",
+    "TranslateDomian":"http://api.fanyi.baidu.com",
+    "TranslatePath":"/api/trans/vip/translate",
+    "AppId":"20170628000060775",
+    "Salt":"1435660288",
+    "Key":"LlbwGO6YLt2xxudZwG__",
+    "IgnoreKeyWords":"asp.net"
 }

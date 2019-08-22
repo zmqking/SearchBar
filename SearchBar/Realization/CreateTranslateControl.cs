@@ -3,10 +3,8 @@ using RestSharp;
 using SearchBar.Interface;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SearchBar.Realization
@@ -23,7 +21,7 @@ namespace SearchBar.Realization
 
         private string sign
         {
-            get { return string.Format("{0}{1}{2}{3}", appid, txtContent, salt, key); }
+            get { return string.Format("{0}{1}{2}{3}", Common.Common.getConfigValue("AppId"), txtContent, Common.Common.getConfigValue("Salt"), Common.Common.getConfigValue("Key")); }
         }
         string getMd5()
         {
@@ -35,13 +33,15 @@ namespace SearchBar.Realization
 
         public string GetJson()
         {
-            var client = new RestClient("http://api.fanyi.baidu.com");
-            var request = new RestRequest("/api/trans/vip/translate", Method.GET);
+            var client = new RestClient(Common.Common.getConfigValue("TranslateDomian"));
+            var request = new RestRequest(Common.Common.getConfigValue("TranslatePath"), Method.GET);
+            //var client = new RestClient("http://api.fanyi.baidu.com");
+            //var request = new RestRequest("/api/trans/vip/translate", Method.GET);
             request.AddParameter("q", txtContent);
             request.AddParameter("from", from);
             request.AddParameter("to", to);
-            request.AddParameter("appid", appid);
-            request.AddParameter("salt", salt);
+            request.AddParameter("appid", Common.Common.getConfigValue("AppId"));
+            request.AddParameter("salt", Common.Common.getConfigValue("Salt"));
             request.AddParameter("sign", getMd5());
             IRestResponse response = client.Execute(request);
             return response.Content;
@@ -51,19 +51,15 @@ namespace SearchBar.Realization
             var lst = new List<string>();
             var content = GetJson();
             dynamic json = JsonConvert.DeserializeObject(content);
-            foreach (var item in json.trans_result)
+            if (json != null)
             {
-                lst.Add(item.dst.ToString());
+                foreach (var item in json.trans_result)
+                {
+                    lst.Add(item.dst.ToString());
+                }
             }
             return string.Join(";", lst);
         }
-
-        public string appid { get { return "20170628000060775"; } }
-
-
-        public string salt { get { return "1435660288"; } }
-
-        public string key { get { return "LlbwGO6YLt2xxudZwG__"; } }
 
         public string from { get; set; }
 
@@ -89,7 +85,6 @@ namespace SearchBar.Realization
             string s = GetResult();
             TextBox txt = new TextBox();
             txt.BackColor = System.Drawing.SystemColors.Control;
-            //txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             Clipboard.SetDataObject(s); 
             txt.Text = s;
             return txt;

@@ -17,3 +17,22 @@ D:\users\administrator\documents\visual studio 2013\Projects\SearchBar\SearchBar
 D:\users\administrator\documents\visual studio 2013\Projects\SearchBar\SearchBar\obj\Debug\SearchBar.pdb
 D:\users\administrator\documents\visual studio 2013\Projects\SearchBar\SearchBar\bin\Debug\bin\Debug\Config\config.json
 D:\users\administrator\documents\visual studio 2013\Projects\SearchBar\SearchBar\obj\Debug\SearchBar.csprojResolveAssemblyReference.cache
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\bin\Debug\SearchBar.exe.config
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\obj\Debug\SearchBar.exe
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\obj\Debug\SearchBar.pdb
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\obj\Debug\SearchBar.csprojResolveAssemblyReference.cache
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\obj\Debug\SearchBar.Properties.Resources.resources
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\obj\Debug\SearchBar.SearchBox.resources
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\obj\Debug\SearchBar.SetPanel.resources
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\obj\Debug\SearchBar.csproj.GenerateResource.Cache
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\bin\Debug\bin\Debug\Config\config.json
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\bin\Debug\SearchBar.exe.manifest
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\bin\Debug\SearchBar.application
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\bin\Debug\SearchBar.exe
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\bin\Debug\SearchBar.pdb
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\bin\Debug\Newtonsoft.Json.dll
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\bin\Debug\RestSharp.dll
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\bin\Debug\Newtonsoft.Json.xml
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\bin\Debug\RestSharp.xml
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\obj\Debug\SearchBar.exe.manifest
+E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\obj\Debug\SearchBar.application

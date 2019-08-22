@@ -5,7 +5,7 @@
     "av": "https://www.javbus.co/search/{q}",
     "dy": "http://www.dy8c.com/?s={q}",
     "tm": "https://list.tmall.com/search_product.htm?q={q}",
-    "js": "http://www.jianshu.com/search?q={q}&page=1&type=note",
+    "jss": "http://www.jianshu.com/search?q={q}&page=1&type=note",
     "wb": "http://s.weibo.com/weibo/{q}",
     "zh": "https://www.zhihu.com/search?type=content&q={q}",
     "db": "https://www.douban.com/search?q={q}",

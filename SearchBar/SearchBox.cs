@@ -287,7 +287,7 @@ namespace SearchBar
             bool flag = false;
 
             //判断是否有忽略的关键字
-            if(getConfigValue("IgnoreKeyWords").Contains(str))
+            if(getConfigValue("IgnoreKeyWords").Contains(str.ToLower()))
             {
                 return flag;
             }

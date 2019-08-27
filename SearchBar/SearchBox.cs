@@ -154,10 +154,31 @@ namespace SearchBar
             }
             else if (e.KeyCode == Keys.Enter && e.Control)
             {
-                string key = txtContent.Text.Trim();
-                if (ControlTypes.ip.ToString() == key.ToLower())
+                string content = txtContent.Text.Trim();
+                if (ControlTypes.ip.ToString() == content.ToLower())
                 {
                     this.txtContent.Text = Common.Common.GetLocalIP();
+                }
+                else
+                {
+                    int spaceIndex = content.IndexOf(" ");
+                    if (spaceIndex > 0)
+                    {
+                        string key = content.Substring(0, spaceIndex).ToLower();
+
+                        if (ControlTypes.f.ToString() == key)
+                        {
+                            content = content.Substring(spaceIndex);
+                        }
+                    }
+                    string translate = getConfigValue("BaiduOnlineTranslateUrl");
+                    string endStr = "en/zh/" + content;
+                    if (content.isChinese())
+                    {
+                        endStr = "zh/en/" + content;
+                    }
+                    string fUrl = translate + endStr;
+                    SearchContent(fUrl);
                 }
             }
         }
@@ -245,7 +266,7 @@ namespace SearchBar
                 }
                 ICreateControl icc = CreateControlWithEnum.getShowControl(Enums.ControlTypes.f);
                 TranslateTypes tt = TranslateTypes.English;
-                if (RegexJudge.isChinese(t))
+                if (t.isChinese())
                 {
                     tt = TranslateTypes.Chinese;
                 }

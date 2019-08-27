@@ -20,7 +20,6 @@ D:\users\administrator\documents\visual studio 2013\Projects\SearchBar\SearchBar
 E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\bin\Debug\SearchBar.exe.config
 E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\obj\Debug\SearchBar.exe
 E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\obj\Debug\SearchBar.pdb
-E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\obj\Debug\SearchBar.csprojResolveAssemblyReference.cache
 E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\obj\Debug\SearchBar.Properties.Resources.resources
 E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\obj\Debug\SearchBar.SearchBox.resources
 E:\King\装机必备\SearchBar\zmqking\SearchBar\SearchBar\obj\Debug\SearchBar.SetPanel.resources

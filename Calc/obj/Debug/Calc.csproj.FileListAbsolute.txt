@@ -1,0 +1,6 @@
+F:\king\Practice\SearchBar\Calc\obj\Debug\Calc.csprojAssemblyReference.cache
+F:\king\Practice\SearchBar\Calc\obj\Debug\Calc.csproj.CoreCompileInputs.cache
+F:\king\Practice\SearchBar\Calc\bin\Debug\Calc.dll
+F:\king\Practice\SearchBar\Calc\bin\Debug\Calc.pdb
+F:\king\Practice\SearchBar\Calc\obj\Debug\Calc.dll
+F:\king\Practice\SearchBar\Calc\obj\Debug\Calc.pdb

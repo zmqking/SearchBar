@@ -43,6 +43,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Calc.dll" size="6144">
+      <assemblyIdentity name="Calc" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Ov7FEc3Upfm5EC/jVS65UKYN2TLQf5sR94ZCjJNtSLQ=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Newtonsoft.Json.dll" size="653824">
       <assemblyIdentity name="Newtonsoft.Json" version="10.0.0.0" publicKeyToken="30AD4FE6B2A6AEED" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -67,14 +79,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SearchBar.exe" size="70144">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SearchBar.exe" size="69120">
       <assemblyIdentity name="SearchBar" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>EiQojQbisL2EJH0gj7WjMHNOTqg1x00EjMNM8ORv0zg=</dsig:DigestValue>
+        <dsig:DigestValue>Br3xExS47sD21SR9tzPICcx6e0d7lFyPRK5QHWK0+zc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

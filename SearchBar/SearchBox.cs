@@ -1,4 +1,5 @@
-﻿using SearchBar.Common;
+﻿using Calc;
+using SearchBar.Common;
 using SearchBar.Enums;
 using SearchBar.Interface;
 using System;
@@ -216,13 +217,15 @@ namespace SearchBar
             try
             {
                 //是否为计算表达式（20*98-7/0.23）
-                string reg = @"^([-]?\d{1,}\.?[-]?\d{0,}[\.,\+,\-,\*,\/][-]?\d{1,}\.?[-]?\d{0,})+$";
-                flag = str.isMatch(reg);
+                //string reg = @"^([-]?\d{1,}\.?[-]?\d{0,}[\.,\+,\-,\*,\/][-]?\d{1,}\.?[-]?\d{0,})+$";
+                //flag = str.isMatch(reg);
+                flag = str.IndexOfAny(new char[4] { '+', '-', '*', '/' }) > -1;
                 if (flag)
                 {
                     string res = calc(str);
                     Clipboard.SetDataObject(res);
                     MessageBox.Show(res);
+                    this.txtContent.Focus();
                 }
             }
             catch (Exception)
@@ -332,107 +335,14 @@ namespace SearchBar
                     }
                 }
             }
-            //if (str.isMatch(@"^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})+$"))
-            //{
-            //    flag = true;
-            //}
             return flag;
         }
 
         private string calc(string str)
         {
-            List<string> listOperator = new List<string>();
-            List<string> listNum = new List<string>();
-
-            int calc_counts = str.Length;
-            StringBuilder num = new StringBuilder();
-            for (int i = 0; i < calc_counts; i++)
-            {
-                string s = str[i].ToString();
-                if (i == 0)
-                {
-                    num.Append(s);
-                }
-                else
-                {
-                    //如果是操作符
-                    if (isOperator(s))
-                    {
-                        //指针还没有到首位，并且前一位还是是操作符，说明是负数来的
-                        if (isOperator(str[i - 1].ToString()))
-                        {
-                            num.Append(s);
-                        }
-                        else
-                        {
-                            listOperator.Add(s);
-                            listNum.Add(num.ToString());
-                            num.Clear();
-                        }
-                    }
-                    else
-                    {
-                        num.Append(s);
-                    }
-                    //最后一个数加进来
-                    if (i == calc_counts - 1)
-                    {
-                        listNum.Add(num.ToString());
-                    }
-                }
-            }
-
-            double result = 0;
-            int j = 0;
-            for (int i = 0; i < listNum.Count; i++)
-            {
-                if (i == 0)
-                {
-                    result = calc(listNum[i], listNum[i + 1], listOperator[j]);
-                    i++;
-                }
-                else
-                {
-                    result = calc(result.ToString(), listNum[i], listOperator[j]);
-                }
-                j++;
-            }
-            return Math.Round(result, 2).ToString();
+            return CalcExpression.Calc(str);
         }
-
-        private static double calc(string res1, string res2, string o)
-        {
-            double res = 0;
-            double a = Convert.ToDouble(res1);
-            double b = Convert.ToDouble(res2);
-            switch (o)
-            {
-                case "+":
-                    res = a + b;
-                    break;
-                case "-":
-                    res = a - b;
-                    break;
-                case "*":
-                    res = a * b;
-                    break;
-                case "/":
-                    res = a / b;
-                    break;
-                case "%":
-                    res = a % b;
-                    break;
-                default:
-                    break;
-            }
-            return res;
-        }
-
-        private static bool isOperator(string c)
-        {
-            string o = "+-*/";
-            return o.Contains(c);
-        }
+        
         #endregion
 
         private void SearchBox_FormClosing(object sender, FormClosingEventArgs e)

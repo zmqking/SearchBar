@@ -219,7 +219,8 @@ namespace SearchBar
                 //是否为计算表达式（20*98-7/0.23）
                 //string reg = @"^([-]?\d{1,}\.?[-]?\d{0,}[\.,\+,\-,\*,\/][-]?\d{1,}\.?[-]?\d{0,})+$";
                 //flag = str.isMatch(reg);
-                flag = str.IndexOfAny(new char[4] { '+', '-', '*', '/' }) > -1;
+                //flag = str.IndexOfAny(new char[4] { '+', '-', '*', '/' }) > -1;
+                flag = CalcExpression.HasOperator(str);
                 if (flag)
                 {
                     string res = calc(str);

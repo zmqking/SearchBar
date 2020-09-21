@@ -127,7 +127,7 @@ namespace Calc
             return float.Parse(num);
         }
 
-        private static bool HasOperator(string str)
+        public static bool HasOperator(string str)
         {
             bool flag = true;
             if (str.IndexOf("-") == 0 && str.IndexOf("-") == str.LastIndexOf("-"))//说明是一个负号，不是减号

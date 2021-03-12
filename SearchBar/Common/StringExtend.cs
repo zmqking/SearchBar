@@ -1,21 +1,71 @@
-﻿using System;
+﻿using SearchBar.Common;
+using SearchBar.Interface;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SearchBar
 {
-   static class StringExtend
+   public static class StringExtend
     {
-       /// <summary>
-       /// 转义字符串里的特殊字符
-       /// </summary>
-       /// <param name="str"></param>
-       /// <returns></returns>
-        public static string escapeStr(this string str)
+        public static bool IsUrlOrIp(this string str)
+        {
+            bool flag = false;
+
+            //判断是否有忽略的关键字
+            if (str.ToLower().Contains(GetConfigValue("IgnoreKeyWords")))
+            {
+                return flag;
+            }
+
+            if (str.IsMatch(@"^((https|http|ftp|rtsp|mms)?(://)?)[^s]+") ||
+                str.IsMatch(@"(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)"))
+            {
+                string strs = GetConfigValue("domainName");
+                int i = str.LastIndexOf(".");
+                if (i > -1)
+                {
+                    str = str.Substring(i);
+                    var ss = strs.Split(';');
+                    foreach (var item in ss)
+                    {
+                        if (str.StartsWith(item))
+                        {
+                            flag = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            return flag;
+        }
+
+        public static string GetConfigValue(this string key)
+        {
+            string res = string.Empty;
+            try
+            {
+                IReadConfig irf = CreateReadObj.getReadWay();
+                res = irf.getConfigValue(key);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// 转义字符串里的特殊字符
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string EscapeStr(this string str)
         {
             string strs = ConfigurationManager.AppSettings["replace"];
             string[] chrs = strs.Split(';');
@@ -33,7 +83,7 @@ namespace SearchBar
        /// </summary>
        /// <param name="str"></param>
        /// <returns></returns>
-        public static string escapeUrlStr(this string str)
+        public static string EscapeUrlStr(this string str)
         {
             return str;//.Replace("&amp;", "&");
         }
@@ -43,7 +93,7 @@ namespace SearchBar
        /// </summary>
        /// <param name="str"></param>
        /// <returns></returns>
-        public static bool isNotEmpty(this string str)
+        public static bool IsNotEmpty(this string str)
         {
             return !string.IsNullOrEmpty(str);
         }
@@ -53,7 +103,7 @@ namespace SearchBar
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static void saveSearchContent(this string str)
+        public static void SaveSearchContent(this string str)
         {
             if (!string.IsNullOrWhiteSpace(str))
             {
@@ -66,7 +116,7 @@ namespace SearchBar
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static bool isMatch(this string str,string strReg)
+        public static bool IsMatch(this string str,string strReg)
         {
             Regex reg = new Regex(strReg);            
             return reg.IsMatch(str);

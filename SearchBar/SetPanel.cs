@@ -74,7 +74,7 @@ namespace SearchBar
             //     this.listBox1.SelectedIndex = index;
             // }
 
-            if (textBox1.Text.isNotEmpty())
+            if (textBox1.Text.IsNotEmpty())
             {
             }
             else

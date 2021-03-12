@@ -36,20 +36,5 @@ namespace SearchBar.Common
                 return "";
             }
         }
-
-        public static string getConfigValue(string key)
-        {
-            string res = string.Empty;
-            try
-            {
-                IReadConfig irf = CreateReadObj.getReadWay();
-                res = irf.getConfigValue(key);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            return res;
-        }
     }
 }

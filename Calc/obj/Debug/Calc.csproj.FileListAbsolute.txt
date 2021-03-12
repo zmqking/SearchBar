@@ -4,3 +4,8 @@ F:\king\Practice\SearchBar\Calc\bin\Debug\Calc.dll
 F:\king\Practice\SearchBar\Calc\bin\Debug\Calc.pdb
 F:\king\Practice\SearchBar\Calc\obj\Debug\Calc.dll
 F:\king\Practice\SearchBar\Calc\obj\Debug\Calc.pdb
+E:\King\Code\Practice\SearchBar\Calc\bin\Debug\Calc.dll
+E:\King\Code\Practice\SearchBar\Calc\bin\Debug\Calc.pdb
+E:\King\Code\Practice\SearchBar\Calc\obj\Debug\Calc.csproj.CoreCompileInputs.cache
+E:\King\Code\Practice\SearchBar\Calc\obj\Debug\Calc.dll
+E:\King\Code\Practice\SearchBar\Calc\obj\Debug\Calc.pdb

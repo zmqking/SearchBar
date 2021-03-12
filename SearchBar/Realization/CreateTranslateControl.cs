@@ -21,7 +21,7 @@ namespace SearchBar.Realization
 
         private string sign
         {
-            get { return string.Format("{0}{1}{2}{3}", Common.Common.getConfigValue("AppId"), txtContent, Common.Common.getConfigValue("Salt"), Common.Common.getConfigValue("Key")); }
+            get { return string.Format("{0}{1}{2}{3}", "AppId".GetConfigValue(), txtContent, "Salt".GetConfigValue(), "Key".GetConfigValue()); }
         }
         string getMd5()
         {
@@ -33,15 +33,15 @@ namespace SearchBar.Realization
 
         public string GetJson()
         {
-            var client = new RestClient(Common.Common.getConfigValue("TranslateDomian"));
-            var request = new RestRequest(Common.Common.getConfigValue("TranslatePath"), Method.GET);
+            var client = new RestClient("TranslateDomian".GetConfigValue());
+            var request = new RestRequest("TranslatePath".GetConfigValue(), Method.GET);
             //var client = new RestClient("http://api.fanyi.baidu.com");
             //var request = new RestRequest("/api/trans/vip/translate", Method.GET);
             request.AddParameter("q", txtContent);
             request.AddParameter("from", from);
             request.AddParameter("to", to);
-            request.AddParameter("appid", Common.Common.getConfigValue("AppId"));
-            request.AddParameter("salt", Common.Common.getConfigValue("Salt"));
+            request.AddParameter("appid", "AppId".GetConfigValue());
+            request.AddParameter("salt", "Salt".GetConfigValue());
             request.AddParameter("sign", getMd5());
             IRestResponse response = client.Execute(request);
             return response.Content;

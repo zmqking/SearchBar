@@ -52,13 +52,13 @@ namespace SearchBar
                     fs = File.OpenRead(path);
                     sr = new StreamReader(fs);
                     string strs = sr.ReadToEnd();
-                    if (strs.isNotEmpty())
+                    if (strs.IsNotEmpty())
                     {
                         strs = strs.Replace("\r\n", ",");
                         string[] strLines = strs.Split(',');
                         if (index <= strLines.Length)
                         {
-                            res = strLines[strLines.Length - index];
+                            res = strLines[strLines.Length - 1 - index];
                         }
                         else
                         {

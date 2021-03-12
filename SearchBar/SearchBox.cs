@@ -90,15 +90,15 @@ namespace SearchBar
             if (e.KeyChar == 13)
             {
                 string c = txtContent.Text.TrimEnd();
-                if (!stringJudge(c) && c.isNotEmpty())
+                if (!stringJudge(c) && c.IsNotEmpty())
                 {
-                    if (isUrlOrIp(c))
+                    if (c.IsUrlOrIp())
                     {
                         SearchContent(c);
                     }
                     else
                     {
-                        string defaultKey = getConfigValue("default");
+                        string defaultKey = "default".GetConfigValue();
                         int spaceIndex = c.IndexOf(" ");
                         if (defaultKey == "close")
                         {
@@ -121,9 +121,9 @@ namespace SearchBar
                         }
                     }
                 }
-                c.saveSearchContent();
+                c.SaveSearchContent();
             }
-            else if (!this.txtContent.Text.isNotEmpty())
+            else if (!this.txtContent.Text.IsNotEmpty())
             {
                 this.Height = WINDOW_HEIGHT;
             }
@@ -172,7 +172,7 @@ namespace SearchBar
                             content = content.Substring(spaceIndex);
                         }
                     }
-                    string translate = getConfigValue("BaiduOnlineTranslateUrl");
+                    string translate = "BaiduOnlineTranslateUrl".GetConfigValue();
                     string endStr = "en/zh/" + content;
                     if (content.isChinese())
                     {
@@ -242,7 +242,7 @@ namespace SearchBar
         private void SearchContent(string fUrl)
         {
             //调用系统chrome的浏览器   
-            callSystemProgram("chrome.exe", fUrl.escapeUrlStr());
+            callSystemProgram("chrome.exe", fUrl.EscapeUrlStr());
             this.Hide();
         }
 
@@ -286,10 +286,10 @@ namespace SearchBar
             }
             else
             {
-                string url = getConfigValue(key);
-                if (url.isNotEmpty())
+                string url = key.GetConfigValue();
+                if (url.IsNotEmpty())
                 {
-                    string fUrl = url.Replace("{q}", c.Substring(spaceIndex + 1).escapeStr());
+                    string fUrl = url.Replace("{q}", c.Substring(spaceIndex + 1).EscapeStr());
                     SearchContent(fUrl);
                 }
                 else
@@ -301,43 +301,13 @@ namespace SearchBar
 
         private void showDefaultSearch(string c, string defaultKey)
         {
-            string url = getConfigValue(defaultKey);
-            string fUrl = url.Replace("{q}", c.escapeStr());
+            string url = defaultKey.GetConfigValue();
+            string fUrl = url.Replace("{q}", c.EscapeStr());
             SearchContent(fUrl);
             index = 0;
         }
 
-        private bool isUrlOrIp(string str)
-        {
-            bool flag = false;
-
-            //判断是否有忽略的关键字
-            if(getConfigValue("IgnoreKeyWords").Contains(str.ToLower()))
-            {
-                return flag;
-            }
-
-            if (str.isMatch(@"^((https|http|ftp|rtsp|mms)?(://)?)[^s]+") ||
-                str.isMatch(@"(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)"))
-            {
-                string strs = getConfigValue("domainName");
-                int i = str.LastIndexOf(".");
-                if (i > -1)
-                {
-                    str = str.Substring(i);
-                    var ss = strs.Split(';');
-                    foreach (var item in ss)
-                    {
-                        if (str.StartsWith(item))
-                        {
-                            flag = true;
-                            break;
-                        }
-                    }
-                }
-            }
-            return flag;
-        }
+        
 
         private string calc(string str)
         {

@@ -16,14 +16,14 @@
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
           UAC Manifest Options
-          If you want to change the Windows User Account Control level replace the 
+          If you want to change the Windows User Account Control level replace the
           requestedExecutionLevel node with one of the following.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         If you want to utilize File and Registry Virtualization for backward 
+         If you want to utilize File and Registry Virtualization for backward
          compatibility then delete the requestedExecutionLevel node.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
@@ -50,7 +50,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>WlYMoBGM0BPOUDHFmi4RFV3vRKH9RZASzqQb5dKcPJM=</dsig:DigestValue>
+        <dsig:DigestValue>dKL3jMSUD/rjMFRr79CBdoo3ZU32R7zXgbdOZZkAqDk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -86,7 +86,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dmCBIPiVZQmVpjw8B81p0w/JB/PrwaDunyddx7den+c=</dsig:DigestValue>
+        <dsig:DigestValue>8PFmEpv+G27z/jzBfGkqjwbc1G1NXIemzcA/ETJP0oA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -108,13 +108,13 @@
       <dsig:DigestValue>ng3OvSy9/V21A7uMll8NdVAWdUG2biqwOHkZukGC+WM=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="SearchBar.exe.config" size="2942">
+  <file name="SearchBar.exe.config" size="2923">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>7ewxejqs9A9n5+NmHKH3MFDxp2JnophHG4uCtA2nD4w=</dsig:DigestValue>
+      <dsig:DigestValue>nU2gAXQoI0/uI3ApzCIpmRwsCpNeDS/HK18EXwO6AbU=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

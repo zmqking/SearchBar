@@ -4,17 +4,17 @@
   <description asmv2:publisher="SearchBar" asmv2:product="SearchBar" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.6.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="SearchBar.exe.manifest" size="6366">
+    <dependentAssembly dependencyType="install" codebase="SearchBar.exe.manifest" size="6364">
       <assemblyIdentity name="SearchBar.exe" version="1.0.0.2" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>VFK6/Hypv2YMQipa7zyf3h8L8LCncepj6viZNk2y8Pc=</dsig:DigestValue>
+        <dsig:DigestValue>ZH6hnNG4qodF71z360d6G4HoSv1BfpQ9gtlZYg3enLs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

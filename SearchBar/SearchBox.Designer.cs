@@ -59,6 +59,7 @@
             this.Name = "SearchBox";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SearchBox";
+            this.Activated += new System.EventHandler(this.SearchBox_Activated_1);
             this.Deactivate += new System.EventHandler(this.SearchBox_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SearchBox_FormClosing);
             this.Load += new System.EventHandler(this.SearchBox_Load);

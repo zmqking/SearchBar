@@ -42,7 +42,7 @@ namespace SearchBar
                             else
                             {
                                 this.TopMost = true;
-                                this.txtContent.Text = string.Empty;
+                                //this.txtContent.Text = string.Empty;
                                 this.Show();
                                 this.Activate();//设置当前窗体为激活状态
 
@@ -320,10 +320,6 @@ namespace SearchBar
         {
         }
 
-        private void SearchBox_Activated(object sender, EventArgs e)
-        {
-        }
-
         private void SearchBox_Deactivate(object sender, EventArgs e)
         {
             this.Hide();
@@ -334,5 +330,13 @@ namespace SearchBar
             this.Hide();
         }
 
+        private void SearchBox_Activated_1(object sender, EventArgs e)
+        {
+            SendKeys.Send("^c"); //向当前活动窗口发送按键 ctrl+c，也就是复制
+            string str = Clipboard.GetText();//从剪贴板取到数据
+            txtContent.Text = str;
+            txtContent.Focus();
+            txtContent.SelectAll();
+        }
     }
 }

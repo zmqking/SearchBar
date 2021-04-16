@@ -332,11 +332,11 @@ namespace SearchBar
 
         private void SearchBox_Activated_1(object sender, EventArgs e)
         {
-            SendKeys.Send("^c"); //向当前活动窗口发送按键 ctrl+c，也就是复制
-            string str = Clipboard.GetText();//从剪贴板取到数据
-            txtContent.Text = str;
-            txtContent.Focus();
-            txtContent.SelectAll();
+            //SendKeys.Send("^c"); //向当前活动窗口发送按键 ctrl+c，也就是复制
+            //string str = Clipboard.GetText();//从剪贴板取到数据
+            //txtContent.Text = str;
+            //txtContent.Focus();
+            //txtContent.SelectAll();
         }
     }
 }

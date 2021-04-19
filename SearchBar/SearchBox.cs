@@ -3,8 +3,6 @@ using SearchBar.Common;
 using SearchBar.Enums;
 using SearchBar.Interface;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SearchBar

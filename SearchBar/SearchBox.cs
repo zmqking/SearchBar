@@ -42,7 +42,7 @@ namespace SearchBar
                             else
                             {
                                 this.TopMost = true;
-                                //this.txtContent.Text = string.Empty;
+                                this.txtContent.Text = string.Empty;
                                 this.Show();
                                 this.Activate();//设置当前窗体为激活状态
 

@@ -144,7 +144,7 @@
     <EmbeddedResource Include="SetPanel.resx">
       <DependentUpon>SetPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="bin\Debug\Config\config.json">
+    <None Include="Config\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
@@ -190,6 +190,9 @@
       <Project>{858B8265-7FD9-46FF-9DE1-9F0E44F81A9D}</Project>
       <Name>Calc</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

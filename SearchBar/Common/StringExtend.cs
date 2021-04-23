@@ -16,9 +16,10 @@ namespace SearchBar
         public static bool IsUrlOrIp(this string str)
         {
             bool flag = false;
-
-            //判断是否有忽略的关键字
-            if (str.ToLower().Contains(GetConfigValue("IgnoreKeyWords")))
+            var words = GetConfigValue("IgnoreKeyWords").Split(';').ToList();
+            var sts = str.ToLower().Split(' ');
+            var tag = words.Exists(p => sts.Contains(p));
+            if (tag)
             {
                 return flag;
             }
@@ -26,15 +27,14 @@ namespace SearchBar
             if (str.IsMatch(@"^((https|http|ftp|rtsp|mms)?(://)?)[^s]+") ||
                 str.IsMatch(@"(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)"))
             {
-                string strs = GetConfigValue("domainName");
                 int i = str.LastIndexOf(".");
                 if (i > -1)
                 {
+                    var strs = GetConfigValue("domainName").Split(';').ToList();
                     str = str.Substring(i);
-                    var ss = strs.Split(';');
-                    foreach (var item in ss)
+                    foreach (var item in strs)
                     {
-                        if (str.StartsWith(item))
+                        if (str == item)
                         {
                             flag = true;
                             break;
@@ -47,7 +47,7 @@ namespace SearchBar
 
         public static string GetConfigValue(this string key)
         {
-            string res = string.Empty;
+            string res = null;
             try
             {
                 IReadConfig irf = CreateReadObj.getReadWay();

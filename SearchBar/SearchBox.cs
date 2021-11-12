@@ -34,7 +34,7 @@ namespace SearchBar
                         case 100:
                             if (this.Visible)
                             {
-                                
+
                                 this.Hide();
                             }
                             else
@@ -46,17 +46,17 @@ namespace SearchBar
 
                             }
                             break;
-                        //case 101:    //按下的是Ctrl+B  
-                        //    //此处填写快捷键响应代码  
-                        //    this.Text = "按下的是Ctrl+B";
-                        //    break;
-                        //case 102:    //按下的是Alt+D  
-                        //    //此处填写快捷键响应代码  
-                        //    this.Text = "按下的是Ctrl+Alt+D";
-                        //    break;
-                        //case 103:
-                        //    this.Text = "F5";
-                        //    break;
+                            //case 101:    //按下的是Ctrl+B  
+                            //    //此处填写快捷键响应代码  
+                            //    this.Text = "按下的是Ctrl+B";
+                            //    break;
+                            //case 102:    //按下的是Alt+D  
+                            //    //此处填写快捷键响应代码  
+                            //    this.Text = "按下的是Ctrl+Alt+D";
+                            //    break;
+                            //case 103:
+                            //    this.Text = "F5";
+                            //    break;
                     }
                     break;
             }
@@ -90,9 +90,10 @@ namespace SearchBar
                 string c = txtContent.Text.TrimEnd();
                 if (!stringJudge(c) && c.IsNotEmpty())
                 {
-                    if (c.IsUrlOrIp())
+                    var strType = c.IsUrlOrIp();
+                    if (strType == StrTypes.IP || strType == StrTypes.Url)
                     {
-                        SearchContent(c);
+                        SearchContent(c, strType);
                     }
                     else
                     {
@@ -237,11 +238,27 @@ namespace SearchBar
         {
             System.Diagnostics.Process.Start(p1, p2);
         }
-        private void SearchContent(string fUrl)
+        private void SearchContent(string fUrl, StrTypes strTypes = StrTypes.String)
         {
             //调用系统chrome的浏览器   
-            callSystemProgram("chrome.exe", fUrl.EscapeUrlStr());
-            this.Hide();
+            //callSystemProgram("chrome.exe", fUrl.EscapeUrlStr());
+            //调用系统默认浏览器
+            try
+            {
+                if (strTypes == StrTypes.Url && !fUrl.StartsWith("www."))
+                {
+                    System.Diagnostics.Process.Start("www." + fUrl.EscapeUrlStr());
+                }
+                else
+                {
+                    System.Diagnostics.Process.Start(fUrl.EscapeUrlStr());
+                }
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         Control ctl;
@@ -305,13 +322,13 @@ namespace SearchBar
             index = 0;
         }
 
-        
+
 
         private string calc(string str)
         {
             return CalcExpression.Calc(str);
         }
-        
+
         #endregion
 
         private void SearchBox_FormClosing(object sender, FormClosingEventArgs e)

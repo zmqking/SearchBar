@@ -16,4 +16,13 @@ namespace SearchBar.Enums
         f,
         ip
     }
+    /// <summary>
+    /// 字符串类型
+    /// </summary>
+    public enum StrTypes
+    {
+        IP,
+        Url,
+        String
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using SearchBar.Common;
+using SearchBar.Enums;
 using SearchBar.Interface;
 using System;
 using System.Collections.Generic;
@@ -13,15 +14,14 @@ namespace SearchBar
 {
    public static class StringExtend
     {
-        public static bool IsUrlOrIp(this string str)
+        public static StrTypes IsUrlOrIp(this string str)
         {
-            bool flag = false;
             var words = GetConfigValue("IgnoreKeyWords").Split(';').ToList();
             var sts = str.ToLower().Split(' ');
             var tag = words.Exists(p => sts.Contains(p));
             if (tag)
             {
-                return flag;
+                return StrTypes.IP;
             }
 
             if (str.IsMatch(@"^((https|http|ftp|rtsp|mms)?(://)?)[^s]+") ||
@@ -32,17 +32,10 @@ namespace SearchBar
                 {
                     var strs = GetConfigValue("domainName").Split(';').ToList();
                     str = str.Substring(i);
-                    foreach (var item in strs)
-                    {
-                        if (str == item)
-                        {
-                            flag = true;
-                            break;
-                        }
-                    }
+                    return strs.Contains(str)? StrTypes.Url: StrTypes.String;
                 }
             }
-            return flag;
+            return StrTypes.String;
         }
 
         public static string GetConfigValue(this string key)

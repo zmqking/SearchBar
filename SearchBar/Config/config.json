@@ -22,6 +22,7 @@
   "v": "https://www.google.com/search?q=site:v2ex.com%20{q}",
   "ip": "http://ip.cn/index.php?ip={q}",
   "tie": "http://tieba.baidu.com/f/search/res?ie=utf-8&qw={q}",
+  "yt": "https://www.youtube.com/results?search_query={q}",
   "domainName": ".cn;.cx;.wang;.cc;.xin;.com;.net;.top;tech;.org;red;.pub;.ink;.info;.xyz;.win",
   "TranslateDomian": "http://api.fanyi.baidu.com",
   "TranslatePath": "/api/trans/vip/translate",

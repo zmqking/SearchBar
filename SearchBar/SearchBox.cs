@@ -245,9 +245,20 @@ namespace SearchBar
             //调用系统默认浏览器
             try
             {
-                if (strTypes == StrTypes.Url && !fUrl.StartsWith("www."))
+                if (strTypes == StrTypes.Url)
                 {
-                    System.Diagnostics.Process.Start("www." + fUrl.EscapeUrlStr());
+                    if (fUrl.StartsWith("http://") || fUrl.StartsWith("https://") || fUrl.StartsWith("www."))
+                    {
+                        System.Diagnostics.Process.Start(fUrl.EscapeUrlStr());
+                    }
+                    else
+                    {
+                        System.Diagnostics.Process.Start("www." + fUrl.EscapeUrlStr());
+                    }
+                }
+                else if (strTypes == StrTypes.IP)
+                {
+                    System.Diagnostics.Process.Start("http://" + fUrl.EscapeUrlStr());
                 }
                 else
                 {

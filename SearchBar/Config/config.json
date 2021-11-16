@@ -1,5 +1,5 @@
 ﻿{
-  "default": "g",
+  "default": "bd",
   "d": "https://kaifa.baidu.com/searchPage?wd={q}",
   "bk": "http://baike.baidu.com/item/{q}",
   "yk": "http://www.soku.com/search_video/q_{q}?spm=a2hww.20023042.#qheader_search~10",

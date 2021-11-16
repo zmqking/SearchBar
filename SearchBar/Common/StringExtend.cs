@@ -28,7 +28,7 @@ namespace SearchBar
                 return StrTypes.IP;
             }
             //if (str.IsMatch(@"^((https|http|ftp|rtsp|mms)?(://)?)[^s]+"))//url
-            if (str.IsMatch(@"(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]"))//url
+            if (str.IsMatch(@"^(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]"))//url
             {
                 return StrTypes.Url;
             }

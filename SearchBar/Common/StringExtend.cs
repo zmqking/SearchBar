@@ -19,7 +19,7 @@ namespace SearchBar
             var words = GetConfigValue("IgnoreKeyWords").Split(';').ToList();
             var sts = str.ToLower().Split(' ');
             var tag = words.Exists(p => sts.Contains(p));//特殊地址处理 asp.net
-            if (tag)
+            if (tag || sts.Length > 1)//带有自定搜索
             {
                 return StrTypes.String;
             }

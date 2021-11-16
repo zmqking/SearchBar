@@ -35,7 +35,7 @@ namespace SearchBar
             else
             {
                 var strs = GetConfigValue("domainName").Split(';').ToList();
-                str = str.Substring(str.LastIndexOf("."));
+                str = str.LastIndexOf(".") > -1 ? str.Substring(str.LastIndexOf(".")) : str;
                 return strs.Contains(str) ? StrTypes.Url : StrTypes.String;
             }
         }

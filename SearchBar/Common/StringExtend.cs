@@ -18,7 +18,7 @@ namespace SearchBar
         {
             var words = GetConfigValue("IgnoreKeyWords").Split(';').ToList();
             var sts = str.ToLower().Split(' ');
-            var tag = words.Exists(p => sts.Contains(p));
+            var tag = words.Exists(p => sts.Contains(p));//特殊地址处理 asp.net
             if (tag)
             {
                 return StrTypes.String;
@@ -32,7 +32,12 @@ namespace SearchBar
             {
                 return StrTypes.Url;
             }
-            return StrTypes.String;
+            else
+            {
+                var strs = GetConfigValue("domainName").Split(';').ToList();
+                str = str.Substring(str.LastIndexOf("."));
+                return strs.Contains(str) ? StrTypes.Url : StrTypes.String;
+            }
         }
 
         public static string GetConfigValue(this string key)

@@ -9,3 +9,9 @@ E:\King\Code\Practice\SearchBar\Calc\bin\Debug\Calc.pdb
 E:\King\Code\Practice\SearchBar\Calc\obj\Debug\Calc.csproj.CoreCompileInputs.cache
 E:\King\Code\Practice\SearchBar\Calc\obj\Debug\Calc.dll
 E:\King\Code\Practice\SearchBar\Calc\obj\Debug\Calc.pdb
+E:\Practice\Calc\bin\Debug\Calc.dll
+E:\Practice\Calc\bin\Debug\Calc.pdb
+E:\Practice\Calc\obj\Debug\Calc.csprojAssemblyReference.cache
+E:\Practice\Calc\obj\Debug\Calc.csproj.CoreCompileInputs.cache
+E:\Practice\Calc\obj\Debug\Calc.dll
+E:\Practice\Calc\obj\Debug\Calc.pdb

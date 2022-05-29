@@ -3,6 +3,7 @@ using SearchBar.Common;
 using SearchBar.Enums;
 using SearchBar.Interface;
 using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace SearchBar
@@ -245,14 +246,32 @@ namespace SearchBar
             //调用系统默认浏览器
             try
             {
+                //if (strTypes == StrTypes.Url && !fUrl.StartsWith("www."))
+                //{
+                //    System.Diagnostics.Process.Start("www." + fUrl.EscapeUrlStr());
+                //}
+                //else
+                //{
+                //    System.Diagnostics.Process.Start(fUrl.EscapeUrlStr());
+                //}
+                //this.Hide();
+
+
+                string strUrl = string.Empty;
                 if (strTypes == StrTypes.Url && !fUrl.StartsWith("www."))
                 {
-                    System.Diagnostics.Process.Start("www." + fUrl.EscapeUrlStr());
+                    strUrl = "www." + fUrl.EscapeUrlStr();
                 }
                 else
                 {
-                    System.Diagnostics.Process.Start(fUrl.EscapeUrlStr());
+                    strUrl = fUrl.EscapeUrlStr();
+                    //System.Diagnostics.Process.Start("chrome.exe", "www." + fUrl.EscapeUrlStr());
+                    //System.Diagnostics.Process.Start(fUrl.EscapeUrlStr());
                 }
+                Process process = new Process();
+                process.StartInfo.FileName = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
+                process.StartInfo.Arguments = strUrl;// + " --new-window --incognito ";
+                process.Start();
                 this.Hide();
             }
             catch (Exception ex)

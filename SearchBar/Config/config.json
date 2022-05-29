@@ -25,6 +25,7 @@
   "yt": "https://www.youtube.com/results?search_query={q}",
   "dan": "https://www.dandanzan10.top/so/{q}-{q}--.html",
   "lib": "https://www.javlibrary.com/ja/vl_searchbyid.php?keyword={q} --new-window --incognito",
+  "jav": "https://www.javbus.com/{q} --new-window --incognito",
   "ddrk": "https://www.baidu.com/s?wd=site%3Addrk.me%20{q}",
   "domainName": ".cn;.cx;.wang;.cc;.xin;.com;.net;.top;tech;.org;red;.pub;.ink;.info;.xyz;.win",
   "TranslateDomian": "http://api.fanyi.baidu.com",

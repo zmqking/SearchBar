@@ -18,24 +18,26 @@ namespace SearchBar
         {
             var words = GetConfigValue("IgnoreKeyWords").Split(';').ToList();
             var sts = str.ToLower().Split(' ');
-            var tag = words.Exists(p => sts.Contains(p));
-            if (tag)
+            var tag = words.Exists(p => sts.Contains(p));//特殊地址处理 asp.net
+            if (tag || sts.Length > 1)//带有自定搜索
+            {
+                return StrTypes.String;
+            }
+            if (str.IsMatch(@"(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)"))
             {
                 return StrTypes.IP;
             }
-
-            if (str.IsMatch(@"^((https|http|ftp|rtsp|mms)?(://)?)[^s]+") ||
-                str.IsMatch(@"(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)"))
+            //if (str.IsMatch(@"^((https|http|ftp|rtsp|mms)?(://)?)[^s]+"))//url
+            if (str.IsMatch(@"^(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]"))//url
             {
-                int i = str.LastIndexOf(".");
-                if (i > -1)
-                {
-                    var strs = GetConfigValue("domainName").Split(';').ToList();
-                    str = str.Substring(i);
-                    return strs.Contains(str)? StrTypes.Url: StrTypes.String;
-                }
+                return StrTypes.Url;
             }
-            return StrTypes.String;
+            else
+            {
+                var strs = GetConfigValue("domainName").Split(';').ToList();
+                str = str.LastIndexOf(".") > -1 ? str.Substring(str.LastIndexOf(".")) : str;
+                return strs.Contains(str) ? StrTypes.Url : StrTypes.String;
+            }
         }
 
         public static string GetConfigValue(this string key)

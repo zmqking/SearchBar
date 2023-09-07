@@ -149,6 +149,18 @@ namespace SearchBar
                 //SetPanel sp = new SetPanel();
                 //sp.ShowDialog();
             }
+            if ((e.KeyCode == Keys.T) && e.Control)
+            {
+                try
+                {
+                    AddSymbols addSymbols = new AddSymbols();
+                    addSymbols.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
             else if (e.KeyCode == Keys.Escape)
             {
                 this.Hide();
@@ -260,7 +272,7 @@ namespace SearchBar
                 string strUrl = string.Empty;
                 if (strTypes == StrTypes.Url && !fUrl.StartsWith("www."))
                 {
-                    strUrl = "www." + fUrl.EscapeUrlStr();
+                    strUrl = fUrl.EscapeUrlStr();
                 }
                 else
                 {
@@ -269,7 +281,7 @@ namespace SearchBar
                     //System.Diagnostics.Process.Start(fUrl.EscapeUrlStr());
                 }
                 Process process = new Process();
-                process.StartInfo.FileName = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
+                process.StartInfo.FileName = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
                 process.StartInfo.Arguments = strUrl;// + " --new-window --incognito ";
                 process.Start();
                 this.Hide();

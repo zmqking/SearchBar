@@ -17,7 +17,7 @@ namespace SearchBar
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new SearchBox());
-            //Application.Run(new SetPanel());
+            //Application.Run(new AddSymbols());
         }
     }
 }

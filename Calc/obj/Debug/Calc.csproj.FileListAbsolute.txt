@@ -15,3 +15,9 @@ E:\Practice\Calc\obj\Debug\Calc.csprojAssemblyReference.cache
 E:\Practice\Calc\obj\Debug\Calc.csproj.CoreCompileInputs.cache
 E:\Practice\Calc\obj\Debug\Calc.dll
 E:\Practice\Calc\obj\Debug\Calc.pdb
+E:\Code\SearchBar\SearchBar\Calc\bin\Debug\Calc.dll
+E:\Code\SearchBar\SearchBar\Calc\bin\Debug\Calc.pdb
+E:\Code\SearchBar\SearchBar\Calc\obj\Debug\Calc.csproj.AssemblyReference.cache
+E:\Code\SearchBar\SearchBar\Calc\obj\Debug\Calc.csproj.CoreCompileInputs.cache
+E:\Code\SearchBar\SearchBar\Calc\obj\Debug\Calc.dll
+E:\Code\SearchBar\SearchBar\Calc\obj\Debug\Calc.pdb

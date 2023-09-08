@@ -154,7 +154,7 @@ namespace SearchBar
                 try
                 {
                     AddSymbols addSymbols = new AddSymbols();
-                    addSymbols.ShowDialog();
+                    addSymbols.Show();
                 }
                 catch (Exception ex)
                 {

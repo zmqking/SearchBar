@@ -20,12 +20,63 @@ namespace SearchBar
             InitializeComponent();
         }
 
-        private void btnExChange_Click(object sender, EventArgs e)
+        #region Event
+        private void rdbPropert_Click(object sender, EventArgs e)
+        {
+            txtFrontSymbols.Text = propertyFrontSymbol;
+            txtBackSymbols.Text = propertyBackSymbol;
+            lblFrontStr.Text = "前面字符";
+            txtBackSymbols.Visible = true;
+            lblBackStr.Visible = true;
+        }
+
+        private void rdbSymbols_Click(object sender, EventArgs e)
+        {
+            txtBackSymbols.Text = string.Empty;
+            txtFrontSymbols.Text = string.Empty;
+            lblFrontStr.Text = "前面字符";
+            txtBackSymbols.Visible = true;
+            lblBackStr.Visible = true;
+        }
+
+        private void rdbExChange_Click(object sender, EventArgs e)
+        {
+            txtBackSymbols.Text = string.Empty;
+            txtFrontSymbols.Text = string.Empty;
+            lblFrontStr.Text = "分隔符:";
+            txtBackSymbols.Visible = true;
+            lblBackStr.Visible = true;
+        }
+
+        private void rdbRmDuplicate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rdbReplace_Click(object sender, EventArgs e)
+        {
+            txtBackSymbols.Text = string.Empty;
+            txtFrontSymbols.Text = string.Empty;
+            txtBackSymbols.Visible = true;
+            lblBackStr.Visible = true;
+        }
+
+        private void rdbDynamic_Click(object sender, EventArgs e)
+        {
+            lblFrontStr.Text = "数量:";
+            txtFrontSymbols.Text = string.Empty;
+            txtBackSymbols.Visible = false;
+            lblBackStr.Visible = false;
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
         {
             txtResult.Text = string.Empty;
             if (string.IsNullOrWhiteSpace(txtContent.Text.Trim()))
             {
-                MessageBox.Show("替换内容不能为空！");
+                MessageBox.Show("左边内容不能为空！");
+                txtContent.Focus();
+                return;
             }
             if (rdbPropert.Checked)
             {
@@ -43,6 +94,22 @@ namespace SearchBar
             {
                 RemoveDuplicate();
             }
+            else if (rdbReplace.Checked)
+            {
+                ReplaceStr();
+            }
+            else if (rdbDynamic.Checked)
+            {
+                DynamicStr();
+            }
+        } 
+        #endregion
+
+        #region Method
+        private void ReplaceStr()
+        {
+            var content = txtContent.Text;
+            txtResult.Text = content.Replace(txtFrontSymbols.Text, txtBackSymbols.Text);
         }
 
         private void RemoveDuplicate()
@@ -141,35 +208,44 @@ namespace SearchBar
         private void GetList(out List<string> listStr, out StringBuilder sb, out string last)
         {
             var content = txtContent.Text.Trim();
-            listStr = content.Split(new char[] { '\r','\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            listStr = content.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
             sb = new StringBuilder();
             last = listStr.Last();
         }
 
-        private void rdbPropert_Click(object sender, EventArgs e)
+        private void DynamicStr()
         {
-            txtFrontSymbols.Text = propertyFrontSymbol;
-            txtBackSymbols.Text = propertyBackSymbol;
-            lblFrontStr.Text = "前面字符";
+            var count = 0;
+            var flag = int.TryParse(txtFrontSymbols.Text, out count);
+            if (flag)
+            {
+                if (count > 9999)
+                {
+                    var drt = MessageBox.Show("数量比较大,会占用比较大内存，确定要继续吗？", "提示", MessageBoxButtons.OKCancel);
+                    flag = drt == DialogResult.OK;
+                }
+                if (flag)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < count; i++)
+                    {
+                        sb.AppendLine(txtContent.Text);
+                    }
+                    txtResult.Text = sb.ToString().TrimEnd('\r', '\n');
+                }
+            }
+            else
+            {
+                txtFrontSymbols.Focus();
+                txtFrontSymbols.SelectAll();
+                MessageBox.Show("请输入正确的数量！");
+            }
         }
+        #endregion
 
-        private void rdbSymbols_Click(object sender, EventArgs e)
+        private void txtResult_Enter(object sender, EventArgs e)
         {
-            txtBackSymbols.Text = string.Empty;
-            txtFrontSymbols.Text = string.Empty;
-            lblFrontStr.Text = "前面字符";
-        }
-
-        private void rdbExChange_Click(object sender, EventArgs e)
-        {
-            txtBackSymbols.Text = string.Empty;
-            txtFrontSymbols.Text = string.Empty;
-            lblFrontStr.Text = "分隔符:";
-        }
-
-        private void rdbRmDuplicate_Click(object sender, EventArgs e)
-        {
-
+            txtContent.SelectAll();
         }
     }
 }

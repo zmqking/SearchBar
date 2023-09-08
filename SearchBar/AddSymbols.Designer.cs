@@ -34,13 +34,15 @@
             this.lblFrontStr = new System.Windows.Forms.Label();
             this.txtBackSymbols = new System.Windows.Forms.TextBox();
             this.txtFrontSymbols = new System.Windows.Forms.TextBox();
-            this.btnExChange = new System.Windows.Forms.Button();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.rdbDynamic = new System.Windows.Forms.RadioButton();
+            this.rdbReplace = new System.Windows.Forms.RadioButton();
+            this.rdbRmDuplicate = new System.Windows.Forms.RadioButton();
             this.rdbSymbols = new System.Windows.Forms.RadioButton();
             this.rdbPropert = new System.Windows.Forms.RadioButton();
             this.rdbExChange = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtResult = new System.Windows.Forms.TextBox();
-            this.rdbRmDuplicate = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +62,9 @@
             this.groupBox1.Controls.Add(this.lblFrontStr);
             this.groupBox1.Controls.Add(this.txtBackSymbols);
             this.groupBox1.Controls.Add(this.txtFrontSymbols);
-            this.groupBox1.Controls.Add(this.btnExChange);
+            this.groupBox1.Controls.Add(this.btnStart);
+            this.groupBox1.Controls.Add(this.rdbDynamic);
+            this.groupBox1.Controls.Add(this.rdbReplace);
             this.groupBox1.Controls.Add(this.rdbRmDuplicate);
             this.groupBox1.Controls.Add(this.rdbSymbols);
             this.groupBox1.Controls.Add(this.rdbPropert);
@@ -106,20 +110,53 @@
             this.txtFrontSymbols.TabIndex = 3;
             this.txtFrontSymbols.Text = "=";
             // 
-            // btnExChange
+            // btnStart
             // 
-            this.btnExChange.Location = new System.Drawing.Point(725, 30);
-            this.btnExChange.Name = "btnExChange";
-            this.btnExChange.Size = new System.Drawing.Size(75, 23);
-            this.btnExChange.TabIndex = 5;
-            this.btnExChange.Text = "Start";
-            this.btnExChange.UseVisualStyleBackColor = true;
-            this.btnExChange.Click += new System.EventHandler(this.btnExChange_Click);
+            this.btnStart.Location = new System.Drawing.Point(725, 30);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(75, 23);
+            this.btnStart.TabIndex = 5;
+            this.btnStart.Text = "Start";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // rdbDynamic
+            // 
+            this.rdbDynamic.AutoSize = true;
+            this.rdbDynamic.Location = new System.Drawing.Point(359, 30);
+            this.rdbDynamic.Name = "rdbDynamic";
+            this.rdbDynamic.Size = new System.Drawing.Size(71, 16);
+            this.rdbDynamic.TabIndex = 2;
+            this.rdbDynamic.Text = "动态生成";
+            this.rdbDynamic.UseVisualStyleBackColor = true;
+            this.rdbDynamic.Click += new System.EventHandler(this.rdbDynamic_Click);
+            // 
+            // rdbReplace
+            // 
+            this.rdbReplace.AutoSize = true;
+            this.rdbReplace.Location = new System.Drawing.Point(306, 30);
+            this.rdbReplace.Name = "rdbReplace";
+            this.rdbReplace.Size = new System.Drawing.Size(47, 16);
+            this.rdbReplace.TabIndex = 2;
+            this.rdbReplace.Text = "替换";
+            this.rdbReplace.UseVisualStyleBackColor = true;
+            this.rdbReplace.Click += new System.EventHandler(this.rdbReplace_Click);
+            // 
+            // rdbRmDuplicate
+            // 
+            this.rdbRmDuplicate.AutoSize = true;
+            this.rdbRmDuplicate.Location = new System.Drawing.Point(253, 30);
+            this.rdbRmDuplicate.Name = "rdbRmDuplicate";
+            this.rdbRmDuplicate.Size = new System.Drawing.Size(47, 16);
+            this.rdbRmDuplicate.TabIndex = 2;
+            this.rdbRmDuplicate.Text = "去重";
+            this.rdbRmDuplicate.UseVisualStyleBackColor = true;
+            this.rdbRmDuplicate.Click += new System.EventHandler(this.rdbRmDuplicate_Click);
             // 
             // rdbSymbols
             // 
             this.rdbSymbols.AutoSize = true;
-            this.rdbSymbols.Location = new System.Drawing.Point(291, 30);
+            this.rdbSymbols.Location = new System.Drawing.Point(176, 30);
             this.rdbSymbols.Name = "rdbSymbols";
             this.rdbSymbols.Size = new System.Drawing.Size(71, 16);
             this.rdbSymbols.TabIndex = 2;
@@ -131,7 +168,7 @@
             // 
             this.rdbPropert.AutoSize = true;
             this.rdbPropert.Checked = true;
-            this.rdbPropert.Location = new System.Drawing.Point(153, 30);
+            this.rdbPropert.Location = new System.Drawing.Point(99, 30);
             this.rdbPropert.Name = "rdbPropert";
             this.rdbPropert.Size = new System.Drawing.Size(71, 16);
             this.rdbPropert.TabIndex = 1;
@@ -170,17 +207,7 @@
             this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtResult.Size = new System.Drawing.Size(404, 422);
             this.txtResult.TabIndex = 7;
-            // 
-            // rdbRmDuplicate
-            // 
-            this.rdbRmDuplicate.AutoSize = true;
-            this.rdbRmDuplicate.Location = new System.Drawing.Point(416, 30);
-            this.rdbRmDuplicate.Name = "rdbRmDuplicate";
-            this.rdbRmDuplicate.Size = new System.Drawing.Size(47, 16);
-            this.rdbRmDuplicate.TabIndex = 2;
-            this.rdbRmDuplicate.Text = "去重";
-            this.rdbRmDuplicate.UseVisualStyleBackColor = true;
-            this.rdbRmDuplicate.Click += new System.EventHandler(this.rdbRmDuplicate_Click);
+            this.txtResult.Enter += new System.EventHandler(this.txtResult_Enter);
             // 
             // AddSymbols
             // 
@@ -189,9 +216,11 @@
             this.ClientSize = new System.Drawing.Size(853, 570);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "AddSymbols";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AddSymbols";
+            this.Text = "文本处理";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -208,12 +237,14 @@
         private System.Windows.Forms.RadioButton rdbExChange;
         private System.Windows.Forms.Label lblFrontStr;
         private System.Windows.Forms.TextBox txtFrontSymbols;
-        private System.Windows.Forms.Button btnExChange;
+        private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.RadioButton rdbSymbols;
         private System.Windows.Forms.RadioButton rdbPropert;
         private System.Windows.Forms.Label lblBackStr;
         private System.Windows.Forms.TextBox txtBackSymbols;
         private System.Windows.Forms.TextBox txtResult;
         private System.Windows.Forms.RadioButton rdbRmDuplicate;
+        private System.Windows.Forms.RadioButton rdbReplace;
+        private System.Windows.Forms.RadioButton rdbDynamic;
     }
 }

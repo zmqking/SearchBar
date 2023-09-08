@@ -207,7 +207,7 @@
             this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtResult.Size = new System.Drawing.Size(404, 422);
             this.txtResult.TabIndex = 7;
-            this.txtResult.Enter += new System.EventHandler(this.txtResult_Enter);
+            this.txtResult.Click += new System.EventHandler(this.txtResult_Click);
             // 
             // AddSymbols
             // 

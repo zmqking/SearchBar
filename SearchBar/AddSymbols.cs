@@ -243,9 +243,9 @@ namespace SearchBar
         }
         #endregion
 
-        private void txtResult_Enter(object sender, EventArgs e)
+        private void txtResult_Click(object sender, EventArgs e)
         {
-            txtContent.SelectAll();
+            txtResult.SelectAll();
         }
     }
 }

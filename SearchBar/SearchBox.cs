@@ -274,7 +274,7 @@ namespace SearchBar
                 {
                     strUrl = fUrl.EscapeUrlStr();
                 }
-                else
+                else 
                 {
                     strUrl = fUrl.EscapeUrlStr();
                     //System.Diagnostics.Process.Start("chrome.exe", "www." + fUrl.EscapeUrlStr());

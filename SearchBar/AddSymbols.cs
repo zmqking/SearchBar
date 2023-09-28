@@ -102,7 +102,7 @@ namespace SearchBar
             {
                 DynamicStr();
             }
-        } 
+        }
         #endregion
 
         #region Method
@@ -194,11 +194,11 @@ namespace SearchBar
             {
                 if (last == item)
                 {
-                    sb.Append($"{txtFrontSymbols.Text.Trim()}{item}{txtBackSymbols.Text.Trim()}");
+                    sb.Append($"{txtFrontSymbols.Text}{item}{txtBackSymbols.Text}");
                 }
                 else
                 {
-                    sb.AppendLine($"{txtFrontSymbols.Text.Trim()}{item}{txtBackSymbols.Text.Trim()}");
+                    sb.AppendLine($"{txtFrontSymbols.Text}{item}{txtBackSymbols.Text}");
                 }
 
             }
@@ -246,6 +246,13 @@ namespace SearchBar
         private void txtResult_Click(object sender, EventArgs e)
         {
             txtResult.SelectAll();
+        }
+
+        private void txtContent_TextChanged(object sender, EventArgs e)
+        {
+            var txt = txtContent.Text;
+
+            txtContent.Text = txt.TrimEnd('\r', '\n');
         }
     }
 }

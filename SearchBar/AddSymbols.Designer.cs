@@ -55,6 +55,7 @@
             this.txtContent.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtContent.Size = new System.Drawing.Size(404, 422);
             this.txtContent.TabIndex = 6;
+            this.txtContent.TextChanged += new System.EventHandler(this.txtContent_TextChanged);
             // 
             // groupBox1
             // 
@@ -100,7 +101,6 @@
             this.txtBackSymbols.Name = "txtBackSymbols";
             this.txtBackSymbols.Size = new System.Drawing.Size(372, 21);
             this.txtBackSymbols.TabIndex = 4;
-            this.txtBackSymbols.Text = ",";
             // 
             // txtFrontSymbols
             // 
@@ -108,7 +108,6 @@
             this.txtFrontSymbols.Name = "txtFrontSymbols";
             this.txtFrontSymbols.Size = new System.Drawing.Size(311, 21);
             this.txtFrontSymbols.TabIndex = 3;
-            this.txtFrontSymbols.Text = "=";
             // 
             // btnStart
             // 
@@ -156,10 +155,12 @@
             // rdbSymbols
             // 
             this.rdbSymbols.AutoSize = true;
+            this.rdbSymbols.Checked = true;
             this.rdbSymbols.Location = new System.Drawing.Point(176, 30);
             this.rdbSymbols.Name = "rdbSymbols";
             this.rdbSymbols.Size = new System.Drawing.Size(71, 16);
             this.rdbSymbols.TabIndex = 2;
+            this.rdbSymbols.TabStop = true;
             this.rdbSymbols.Text = "加字符串";
             this.rdbSymbols.UseVisualStyleBackColor = true;
             this.rdbSymbols.Click += new System.EventHandler(this.rdbSymbols_Click);
@@ -167,12 +168,10 @@
             // rdbPropert
             // 
             this.rdbPropert.AutoSize = true;
-            this.rdbPropert.Checked = true;
             this.rdbPropert.Location = new System.Drawing.Point(99, 30);
             this.rdbPropert.Name = "rdbPropert";
             this.rdbPropert.Size = new System.Drawing.Size(71, 16);
             this.rdbPropert.TabIndex = 1;
-            this.rdbPropert.TabStop = true;
             this.rdbPropert.Text = "属性赋值";
             this.rdbPropert.UseVisualStyleBackColor = true;
             this.rdbPropert.Click += new System.EventHandler(this.rdbPropert_Click);

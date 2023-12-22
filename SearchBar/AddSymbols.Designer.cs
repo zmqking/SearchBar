@@ -101,6 +101,7 @@
             this.txtBackSymbols.Name = "txtBackSymbols";
             this.txtBackSymbols.Size = new System.Drawing.Size(372, 21);
             this.txtBackSymbols.TabIndex = 4;
+            this.txtBackSymbols.Text = "\',";
             // 
             // txtFrontSymbols
             // 
@@ -108,6 +109,7 @@
             this.txtFrontSymbols.Name = "txtFrontSymbols";
             this.txtFrontSymbols.Size = new System.Drawing.Size(311, 21);
             this.txtFrontSymbols.TabIndex = 3;
+            this.txtFrontSymbols.Text = "\'";
             // 
             // btnStart
             // 

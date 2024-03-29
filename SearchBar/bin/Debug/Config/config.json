@@ -27,8 +27,6 @@
   "lib": "https://www.javlibrary.com/ja/vl_searchbyid.php?keyword={q} --new-window --incognito",
   "jav": "https://www.javbus.com/{q} --new-window --incognito",
   "ddrk": "https://www.baidu.com/s?wd=site%3Addrk.me%20{q}",
-  "mdn": "https://developer.mozilla.org/zh-CN/docs/Web/API/Document/{q}",
-  "ai": "https://aoyo.ai/search/?q={q}",
   "domainName": ".cn;.cx;.wang;.cc;.xin;.com;.net;.top;tech;.org;red;.pub;.ink;.info;.xyz;.win",
   "TranslateDomian": "http://api.fanyi.baidu.com",
   "TranslatePath": "/api/trans/vip/translate",

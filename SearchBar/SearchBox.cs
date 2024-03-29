@@ -384,5 +384,20 @@ namespace SearchBar
             //txtContent.Focus();
             //txtContent.SelectAll();
         }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void openSearch_Click(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+
+        private void nofityIcon_Click(object sender, EventArgs e)
+        {
+            this.Show();
+        }
     }
 }

@@ -32,8 +32,8 @@ namespace SearchBar
 
         private void rdbSymbols_Click(object sender, EventArgs e)
         {
-            txtBackSymbols.Text = string.Empty;
-            txtFrontSymbols.Text = string.Empty;
+            txtFrontSymbols.Text = "'";
+            txtBackSymbols.Text = "',";
             lblFrontStr.Text = "前面字符";
             txtBackSymbols.Visible = true;
             lblBackStr.Visible = true;

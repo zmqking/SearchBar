@@ -29,6 +29,7 @@
   "ddrk": "https://www.baidu.com/s?wd=site%3Addrk.me%20{q}",
   "domainName": ".cn;.cx;.wang;.cc;.xin;.com;.net;.top;tech;.org;red;.pub;.ink;.info;.xyz;.win",
   "TranslateDomian": "http://api.fanyi.baidu.com",
+  "ds": "https://chat.deepseek.com",
   "TranslatePath": "/api/trans/vip/translate",
   "AppId": "20170628000060775",
   "Salt": "1435660288",

@@ -335,7 +335,9 @@ namespace SearchBar
                 string url = key.GetConfigValue();
                 if (url.IsNotEmpty())
                 {
-                    string fUrl = url.Replace("{q}", c.Substring(spaceIndex + 1).EscapeStr());
+                    var content = c.Substring(spaceIndex + 1).EscapeStr();
+                    Clipboard.SetText(content);
+                    string fUrl = url.Replace("{q}", content);
                     SearchContent(fUrl);
                 }
                 else

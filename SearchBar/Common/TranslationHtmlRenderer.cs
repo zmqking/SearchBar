@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -54,13 +54,14 @@ namespace SearchBar.Common
 
             return "<!DOCTYPE html><html><head><meta charset='utf-8'>"
                 + "<style>"
-                + "html,body{margin:0;padding:0;background:#f4f6fb;color:#253047;font-family:'Microsoft YaHei','Segoe UI',sans-serif;}"
+                + "*{box-sizing:border-box;}"
+                + "html,body{width:100%;margin:0;padding:0;overflow-x:hidden;background:#f4f6fb;color:#253047;font-family:'Microsoft YaHei','Segoe UI',sans-serif;}"
                 + ".page{padding:16px 18px 22px;}"
                 + ".header{padding:15px 18px;margin-bottom:13px;background:#4666e5;color:#fff;border-radius:9px;box-shadow:0 3px 10px #c9d0e8;}"
                 + ".header .title{font-size:18px;font-weight:bold;}.header .sub{font-size:12px;margin-top:5px;color:#e8ecff;}"
                 + ".card{background:#fff;border:1px solid #dfe4f1;border-left:4px solid #607ce9;border-radius:7px;margin:0 0 11px;padding:12px 14px;box-shadow:0 2px 7px #e0e4ef;}"
                 + ".card h2{font-size:14px;margin:0 0 8px;color:#3855c8;}"
-                + ".line{font-size:13px;line-height:1.75;margin:2px 0;word-break:break-word;}"
+                + ".line{max-width:100%;font-size:13px;line-height:1.75;margin:2px 0;overflow-wrap:anywhere;word-break:break-word;}"
                 + ".example{background:#f7f9ff;border-radius:5px;padding:7px 9px;margin:6px 0;color:#33415f;}"
                 + ".empty{color:#8992a8;font-style:italic;}"
                 + "</style></head><body><div class='page'>"

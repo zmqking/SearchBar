@@ -22,6 +22,7 @@ namespace SearchBar
             nofityIcon.Click -= nofityIcon_Click;
             nofityIcon.MouseClick += nofityIcon_MouseClick;
             InitializeResultList();
+            InitializeResponsiveLayout();
             InitializeStartupMenu();
             //this.ControlBox = false;   // 设置不出现关闭按钮
         }
@@ -33,6 +34,8 @@ namespace SearchBar
         private const int WM_DESTROY = 0x2; //窗口消息-销毁  
         private const int Space = 0x3572; //热键ID  
         private const int MAX_APPLICATION_RESULTS = 8;
+        private const int MINIMUM_EXPANDED_CLIENT_HEIGHT = 260;
+        private const int CONVERSATION_STATUS_HEIGHT = 58;
         private readonly DeepSeekTranslationService translationService = new DeepSeekTranslationService();
         private readonly WebSearchService webSearchService = new WebSearchService();
         private readonly List<ApplicationSearchResult> applications = new List<ApplicationSearchResult>();
@@ -45,6 +48,8 @@ namespace SearchBar
         private ToolStripMenuItem startupMenuItem;
         private ToolStripMenuItem openLogMenuItem;
         private bool isDeepSeekBusy;
+        private bool isUpdatingResponsiveLayout;
+        private Size expandedClientSize = new Size(484, 404);
 
         private void InitializeResultList()
         {
@@ -111,6 +116,91 @@ namespace SearchBar
             conversationStatusPanel.Controls.Add(clearContextButton);
             Controls.Add(conversationStatusPanel);
             txtContent.TextChanged += txtContent_TextChanged;
+        }
+
+        private void InitializeResponsiveLayout()
+        {
+            FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            MinimumSize = new Size(360, WINDOW_HEIGHT);
+            SizeGripStyle = SizeGripStyle.Show;
+            txtContent.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            Resize += SearchBox_Resize;
+            LayoutResultControls();
+        }
+
+        private void SearchBox_Resize(object sender, EventArgs e)
+        {
+            if (isUpdatingResponsiveLayout)
+            {
+                return;
+            }
+
+            if (HasVisibleResult() && ClientSize.Height >= MINIMUM_EXPANDED_CLIENT_HEIGHT)
+            {
+                expandedClientSize = ClientSize;
+            }
+
+            LayoutResultControls();
+        }
+
+        private bool HasVisibleResult()
+        {
+            return resultList.Visible || translationResultBrowser.Visible;
+        }
+
+        private void EnsureExpandedResultSize()
+        {
+            if (ClientSize.Height > txtContent.Bottom + 10)
+            {
+                return;
+            }
+
+            int expandedHeight = Math.Max(MINIMUM_EXPANDED_CLIENT_HEIGHT, expandedClientSize.Height);
+            isUpdatingResponsiveLayout = true;
+            try
+            {
+                ClientSize = new Size(ClientSize.Width, expandedHeight);
+            }
+            finally
+            {
+                isUpdatingResponsiveLayout = false;
+            }
+        }
+
+        private void LayoutResultControls()
+        {
+            if (resultList == null || translationResultBrowser == null
+                || conversationStatusPanel == null)
+            {
+                return;
+            }
+
+            int contentWidth = Math.Max(1, ClientSize.Width);
+            txtContent.Width = contentWidth;
+
+            int resultTop = txtContent.Bottom + 4;
+            int footerHeight = conversationStatusPanel.Visible
+                ? CONVERSATION_STATUS_HEIGHT
+                : 0;
+            int resultHeight = Math.Max(40, ClientSize.Height - resultTop - footerHeight);
+            var resultBounds = new Rectangle(0, resultTop, contentWidth, resultHeight);
+            resultList.Bounds = resultBounds;
+            translationResultBrowser.Bounds = resultBounds;
+
+            if (resultList.Columns.Count >= 2)
+            {
+                int nameColumnWidth = Math.Max(140, contentWidth * 40 / 100);
+                resultList.Columns[0].Width = nameColumnWidth;
+                resultList.Columns[1].Width = Math.Max(120, contentWidth - nameColumnWidth - 8);
+            }
+
+            conversationStatusPanel.Bounds = new Rectangle(
+                0,
+                Math.Max(resultTop, ClientSize.Height - footerHeight),
+                contentWidth,
+                CONVERSATION_STATUS_HEIGHT);
+            clearContextButton.Left = Math.Max(10, contentWidth - clearContextButton.Width - 12);
+            conversationStatusLabel.Width = Math.Max(120, clearContextButton.Left - 20);
         }
 
         private void InitializeStartupMenu()
@@ -635,7 +725,8 @@ namespace SearchBar
                 clearContextButton.Enabled = contextInfo.TurnCount > 0;
                 conversationStatusPanel.Visible = true;
                 conversationStatusPanel.BringToFront();
-                ClientSize = new Size(ClientSize.Width, conversationStatusPanel.Bottom);
+                EnsureExpandedResultSize();
+                LayoutResultControls();
             }
             catch (Exception ex)
             {
@@ -693,7 +784,8 @@ namespace SearchBar
             translationResultBrowser.DocumentText = TranslationHtmlRenderer.Render(details, text);
             translationResultBrowser.Visible = true;
             translationResultBrowser.BringToFront();
-            ClientSize = new Size(ClientSize.Width, translationResultBrowser.Bottom);
+            EnsureExpandedResultSize();
+            LayoutResultControls();
         }
 
         private async Task ShowWebSearchChoicesAsync(string query)
@@ -745,7 +837,23 @@ namespace SearchBar
             translationResultBrowser.Visible = false;
             conversationStatusPanel.Visible = false;
             resultList.Visible = visible;
-            ClientSize = new Size(ClientSize.Width, visible ? resultList.Bottom : txtContent.Bottom + 3);
+            if (visible)
+            {
+                EnsureExpandedResultSize();
+                LayoutResultControls();
+                return;
+            }
+
+            isUpdatingResponsiveLayout = true;
+            try
+            {
+                ClientSize = new Size(ClientSize.Width, txtContent.Bottom + 3);
+            }
+            finally
+            {
+                isUpdatingResponsiveLayout = false;
+            }
+            LayoutResultControls();
         }
 
         private void MoveResultSelection(int direction)

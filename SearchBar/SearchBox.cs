@@ -2,8 +2,14 @@
 using SearchBar.Common;
 using SearchBar.Enums;
 using SearchBar.Interface;
+using SearchBar.Realization;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SearchBar
@@ -13,6 +19,10 @@ namespace SearchBar
         public SearchBox()
         {
             InitializeComponent();
+            nofityIcon.Click -= nofityIcon_Click;
+            nofityIcon.MouseClick += nofityIcon_MouseClick;
+            InitializeResultList();
+            InitializeStartupMenu();
             //this.ControlBox = false;   // 设置不出现关闭按钮
         }
 
@@ -22,6 +32,97 @@ namespace SearchBar
         private const int WM_CREATE = 0x1; //窗口消息-创建  
         private const int WM_DESTROY = 0x2; //窗口消息-销毁  
         private const int Space = 0x3572; //热键ID  
+        private const int MAX_APPLICATION_RESULTS = 8;
+        private readonly DeepSeekTranslationService translationService = new DeepSeekTranslationService();
+        private readonly WebSearchService webSearchService = new WebSearchService();
+        private readonly List<ApplicationSearchResult> applications = new List<ApplicationSearchResult>();
+        private ListView resultList;
+        private ImageList resultImages;
+        private WebBrowser translationResultBrowser;
+        private Panel conversationStatusPanel;
+        private Label conversationStatusLabel;
+        private Button clearContextButton;
+        private ToolStripMenuItem startupMenuItem;
+        private ToolStripMenuItem openLogMenuItem;
+        private bool isDeepSeekBusy;
+
+        private void InitializeResultList()
+        {
+            resultImages = new ImageList
+            {
+                ColorDepth = ColorDepth.Depth32Bit,
+                ImageSize = new Size(24, 24)
+            };
+            resultList = new ListView
+            {
+                FullRowSelect = true,
+                HeaderStyle = ColumnHeaderStyle.None,
+                HideSelection = false,
+                Location = new Point(0, txtContent.Bottom + 4),
+                MultiSelect = false,
+                ShowItemToolTips = true,
+                SmallImageList = resultImages,
+                Size = new Size(ClientSize.Width, 230),
+                View = View.Details,
+                Visible = false
+            };
+            resultList.Columns.Add("名称", 185);
+            resultList.Columns.Add("详情", 285);
+            resultList.DoubleClick += resultList_DoubleClick;
+            Controls.Add(resultList);
+
+            translationResultBrowser = new WebBrowser
+            {
+                AllowWebBrowserDrop = false,
+                IsWebBrowserContextMenuEnabled = true,
+                Location = resultList.Location,
+                ScriptErrorsSuppressed = true,
+                Size = new Size(resultList.Width, 320),
+                Visible = false,
+                WebBrowserShortcutsEnabled = true
+            };
+            Controls.Add(translationResultBrowser);
+
+            conversationStatusPanel = new Panel
+            {
+                BackColor = Color.FromArgb(241, 245, 255),
+                BorderStyle = BorderStyle.FixedSingle,
+                Location = new Point(0, translationResultBrowser.Bottom),
+                Size = new Size(ClientSize.Width, 58),
+                Visible = false
+            };
+            conversationStatusLabel = new Label
+            {
+                AutoEllipsis = true,
+                Font = new Font("Microsoft YaHei", 9F, FontStyle.Regular, GraphicsUnit.Point, 134),
+                Location = new Point(10, 7),
+                Size = new Size(355, 44),
+                TextAlign = ContentAlignment.MiddleLeft
+            };
+            clearContextButton = new Button
+            {
+                Location = new Point(375, 12),
+                Size = new Size(96, 32),
+                Text = "清除上下文",
+                UseVisualStyleBackColor = true
+            };
+            clearContextButton.Click += clearContextButton_Click;
+            conversationStatusPanel.Controls.Add(conversationStatusLabel);
+            conversationStatusPanel.Controls.Add(clearContextButton);
+            Controls.Add(conversationStatusPanel);
+            txtContent.TextChanged += txtContent_TextChanged;
+        }
+
+        private void InitializeStartupMenu()
+        {
+            startupMenuItem = new ToolStripMenuItem("开机启动") { CheckOnClick = false };
+            startupMenuItem.Click += startupMenuItem_Click;
+            contextMenuStrip1.Items.Insert(1, startupMenuItem);
+
+            openLogMenuItem = new ToolStripMenuItem("打开日志目录");
+            openLogMenuItem.Click += openLogMenuItem_Click;
+            contextMenuStrip1.Items.Insert(2, openLogMenuItem);
+        }
 
         protected override void WndProc(ref Message m)
         {
@@ -65,10 +166,11 @@ namespace SearchBar
         }
 
         #region 事件
-        private void SearchBox_Load(object sender, EventArgs e)
+        private async void SearchBox_Load(object sender, EventArgs e)
         {
             //注册热键Shift+S，Id号为100。HotKey.KeyModifiers.Shift也可以直接使用数字4来表示。  
-            HotKey.RegisterHotKey(Handle, 100, HotKey.KeyModifiers.Ctrl, Keys.Q);
+            bool hotKeyRegistered = HotKey.RegisterHotKey(Handle, 100, HotKey.KeyModifiers.Ctrl, Keys.Q);
+            ApplicationLogger.Info("SearchBox loaded. Ctrl+Q hotkey registered: " + hotKeyRegistered);
             ////注册热键Ctrl+B，Id号为101。HotKey.KeyModifiers.Ctrl也可以直接使用数字2来表示。  
             //HotKey.RegisterHotKey(Handle, 101, HotKey.KeyModifiers.Ctrl, Keys.B);
             ////注册热键Ctrl+Alt+D，Id号为102。HotKey.KeyModifiers.Alt也可以直接使用数字1来表示。  
@@ -76,7 +178,32 @@ namespace SearchBar
             ////注册热键F5，Id号为103。  
             //HotKey.RegisterHotKey(Handle, 103, HotKey.KeyModifiers.None, Keys.F5);
 
-            //initTextBoxSource();
+            try
+            {
+                startupMenuItem.Checked = StartupManager.IsEnabled();
+                ApplicationLogger.Info("Startup option loaded. Enabled: " + startupMenuItem.Checked);
+            }
+            catch (Exception ex)
+            {
+                startupMenuItem.Checked = false;
+                ApplicationLogger.Error("Failed to read startup option.", ex);
+            }
+
+            try
+            {
+                ApplicationLogger.Info("Background application indexing requested.");
+                List<ApplicationSearchResult> indexedApplications = await Task.Run(
+                    () => ApplicationSearchService.LoadApplications());
+                applications.Clear();
+                applications.AddRange(indexedApplications);
+                ApplicationLogger.Info("Application index assigned to UI. Count: " + applications.Count);
+                UpdateApplicationResults();
+            }
+            catch (Exception ex)
+            {
+                ApplicationLogger.Error("Application indexing failed.", ex);
+                ShowError("读取本地程序失败", ex);
+            }
         }
 
         /// <summary>
@@ -88,44 +215,7 @@ namespace SearchBar
         {
             if (e.KeyChar == 13)
             {
-                string c = txtContent.Text.TrimEnd();
-                if (!stringJudge(c) && c.IsNotEmpty())
-                {
-                    var strType = c.IsUrlOrIp();
-                    if (strType == StrTypes.IP || strType == StrTypes.Url)
-                    {
-                        SearchContent(c, strType);
-                    }
-                    else
-                    {
-                        string defaultKey = "default".GetConfigValue();
-                        int spaceIndex = c.IndexOf(" ");
-                        if (defaultKey == "close")
-                        {
-                            if (spaceIndex > -1)
-                            {
-                                showSpecifySearch(c, spaceIndex, defaultKey);
-                            }
-                        }
-                        else
-                        {
-                            //中间有空格
-                            if (spaceIndex > -1)
-                            {
-                                showSpecifySearch(c, spaceIndex, defaultKey);
-                            }
-                            else
-                            {
-                                showDefaultSearch(c, defaultKey);
-                            }
-                        }
-                    }
-                }
-                c.SaveSearchContent();
-            }
-            else if (!this.txtContent.Text.IsNotEmpty())
-            {
-                this.Height = WINDOW_HEIGHT;
+                e.Handled = true;
             }
         }
         /// <summary>
@@ -133,7 +223,7 @@ namespace SearchBar
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SearchBox_KeyDown(object sender, KeyEventArgs e)
+        private async void SearchBox_KeyDown(object sender, KeyEventArgs e)
         {
             if ((e.KeyCode == Keys.P) && e.Control)
             {
@@ -184,22 +274,33 @@ namespace SearchBar
                             content = content.Substring(spaceIndex);
                         }
                     }
-                    string translate = "BaiduOnlineTranslateUrl".GetConfigValue();
-                    string endStr = "en/zh/" + content;
-                    if (content.isChinese())
-                    {
-                        endStr = "zh/en/" + content;
-                    }
-                    string fUrl = translate + endStr;
-                    SearchContent(fUrl);
+                    await TranslateAndShowAsync(content.Trim());
                 }
+                e.SuppressKeyPress = true;
             }
         }
 
         int index = 1;
         int counts = 0;
-        private void txtContent_KeyDown(object sender, KeyEventArgs e)
+        private async void txtContent_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Enter && !e.Control)
+            {
+                e.SuppressKeyPress = true;
+                if (!OpenSelectedResult())
+                {
+                    await ExecuteInputAsync();
+                }
+                return;
+            }
+
+            if ((e.KeyCode == Keys.Up || e.KeyCode == Keys.Down) && resultList.Visible && resultList.Items.Count > 0)
+            {
+                MoveResultSelection(e.KeyCode == Keys.Down ? 1 : -1);
+                e.SuppressKeyPress = true;
+                return;
+            }
+
             if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
             {
                 if (e.KeyCode == Keys.Up && index < counts)
@@ -253,42 +354,18 @@ namespace SearchBar
         }
         private void SearchContent(string fUrl, StrTypes strTypes = StrTypes.String)
         {
-            //调用系统chrome的浏览器   
-            //callSystemProgram("chrome.exe", fUrl.EscapeUrlStr());
-            //调用系统默认浏览器
             try
             {
-                //if (strTypes == StrTypes.Url && !fUrl.StartsWith("www."))
-                //{
-                //    System.Diagnostics.Process.Start("www." + fUrl.EscapeUrlStr());
-                //}
-                //else
-                //{
-                //    System.Diagnostics.Process.Start(fUrl.EscapeUrlStr());
-                //}
-                //this.Hide();
-
-
-                string strUrl = string.Empty;
-                if (strTypes == StrTypes.Url && !fUrl.StartsWith("www."))
+                Process.Start(new ProcessStartInfo
                 {
-                    strUrl = fUrl.EscapeUrlStr();
-                }
-                else
-                {
-                    strUrl = fUrl.EscapeUrlStr();
-                    //System.Diagnostics.Process.Start("chrome.exe", "www." + fUrl.EscapeUrlStr());
-                    //System.Diagnostics.Process.Start(fUrl.EscapeUrlStr());
-                }
-                Process process = new Process();
-                process.StartInfo.FileName = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
-                process.StartInfo.Arguments = strUrl;// + " --new-window --incognito ";
-                process.Start();
+                    FileName = fUrl,
+                    UseShellExecute = true
+                });
                 this.Hide();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                ShowError("无法打开链接", ex);
             }
         }
 
@@ -335,7 +412,7 @@ namespace SearchBar
                 string url = key.GetConfigValue();
                 if (url.IsNotEmpty())
                 {
-                    var content = c.Substring(spaceIndex + 1).EscapeStr();
+                    var content = Uri.EscapeDataString(c.Substring(spaceIndex + 1));
                     Clipboard.SetText(content);
                     string fUrl = url.Replace("{q}", content);
                     SearchContent(fUrl);
@@ -350,9 +427,419 @@ namespace SearchBar
         private void showDefaultSearch(string c, string defaultKey)
         {
             string url = defaultKey.GetConfigValue();
-            string fUrl = url.Replace("{q}", c.EscapeStr());
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                MessageBox.Show("默认搜索引擎配置无效。", "SearchBar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string fUrl = url.Replace("{q}", Uri.EscapeDataString(c));
             SearchContent(fUrl);
             index = 0;
+        }
+
+        private async Task ExecuteInputAsync()
+        {
+            string content = txtContent.Text.Trim();
+            if (string.IsNullOrWhiteSpace(content) || stringJudge(content))
+            {
+                return;
+            }
+
+            try
+            {
+                if (string.Equals(content, "f", StringComparison.OrdinalIgnoreCase))
+                {
+                    ShowTextResult("请输入需要翻译的中文或英文内容。\n示例：f hello world", "翻译使用提示");
+                    return;
+                }
+                if (string.Equals(content, "ds", StringComparison.OrdinalIgnoreCase))
+                {
+                    ShowTextResult(
+                        "请输入需要向 DeepSeek 查询的问题。\n"
+                        + "示例：ds 什么是依赖注入\n"
+                        + "清空上下文：ds clear",
+                        "DeepSeek 使用提示");
+                    return;
+                }
+
+                int spaceIndex = content.IndexOfAny(new[] { ' ', '\t' });
+                string command = spaceIndex > 0 ? content.Substring(0, spaceIndex) : string.Empty;
+                if (string.Equals(command, "f", StringComparison.OrdinalIgnoreCase))
+                {
+                    await TranslateAndShowAsync(content.Substring(spaceIndex + 1).Trim());
+                    return;
+                }
+                if (string.Equals(command, "ds", StringComparison.OrdinalIgnoreCase))
+                {
+                    string question = content.Substring(spaceIndex + 1).Trim();
+                    if (string.Equals(question, "clear", StringComparison.OrdinalIgnoreCase)
+                        || string.Equals(question, "清空", StringComparison.Ordinal))
+                    {
+                        await ClearDeepSeekContextAsync();
+                    }
+                    else
+                    {
+                        await QueryDeepSeekAndShowAsync(question);
+                    }
+                    return;
+                }
+
+                string normalizedUrl;
+                if (WebAddressParser.TryNormalize(content, out normalizedUrl))
+                {
+                    SearchContent(normalizedUrl, StrTypes.Url);
+                    return;
+                }
+
+                string defaultKey = "default".GetConfigValue();
+                if (spaceIndex > 0)
+                {
+                    string specifiedKey = content.Substring(0, spaceIndex).ToLowerInvariant();
+                    string specifiedUrl = specifiedKey.GetConfigValue();
+                    if (!string.IsNullOrWhiteSpace(specifiedUrl))
+                    {
+                        showSpecifySearch(content, spaceIndex, defaultKey);
+                    }
+                    else if (!string.Equals(defaultKey, "close", StringComparison.OrdinalIgnoreCase))
+                    {
+                        await ShowWebSearchChoicesAsync(content);
+                    }
+                }
+                else if (!string.Equals(defaultKey, "close", StringComparison.OrdinalIgnoreCase))
+                {
+                    await ShowWebSearchChoicesAsync(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError("执行搜索失败", ex);
+            }
+            finally
+            {
+                content.SaveSearchContent();
+            }
+        }
+
+        private async Task TranslateAndShowAsync(string content)
+        {
+            if (isDeepSeekBusy || string.IsNullOrWhiteSpace(content))
+            {
+                return;
+            }
+
+            isDeepSeekBusy = true;
+            ShowTextResult("正在翻译…", "DeepSeek");
+            try
+            {
+                string result = await translationService.TranslateAsync(content);
+                ShowTextResult(result, "DeepSeek 翻译结果（已复制）");
+                try
+                {
+                    Clipboard.SetText(result);
+                }
+                catch (Exception)
+                {
+                    // Clipboard may temporarily be locked; the result remains visible.
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowTextResult(ex.Message, "翻译失败");
+            }
+            finally
+            {
+                isDeepSeekBusy = false;
+            }
+        }
+
+        private async Task QueryDeepSeekAndShowAsync(string question)
+        {
+            if (isDeepSeekBusy || string.IsNullOrWhiteSpace(question))
+            {
+                return;
+            }
+
+            isDeepSeekBusy = true;
+            ShowTextResult("正在查询 DeepSeek…", "DeepSeek 查询");
+            try
+            {
+                string result = await translationService.AskAsync(question);
+                ShowTextResult(result, "DeepSeek 回答（已复制）");
+                try
+                {
+                    Clipboard.SetText(result);
+                }
+                catch (Exception)
+                {
+                    // Clipboard may temporarily be locked; the result remains visible.
+                }
+            }
+            catch (Exception ex)
+            {
+                ApplicationLogger.Error("DeepSeek query failed.", ex);
+                ShowTextResult(ex.Message, "DeepSeek 查询失败");
+            }
+            finally
+            {
+                isDeepSeekBusy = false;
+            }
+            await UpdateConversationStatusAsync();
+        }
+
+        private async Task ClearDeepSeekContextAsync()
+        {
+            if (isDeepSeekBusy)
+            {
+                return;
+            }
+
+            isDeepSeekBusy = true;
+            try
+            {
+                await translationService.ClearConversationAsync();
+                ShowTextResult(
+                    "当前 DeepSeek 会话上下文已清空，下一次 ds 查询将开始新会话。",
+                    "DeepSeek 会话");
+            }
+            catch (Exception ex)
+            {
+                ApplicationLogger.Error("Failed to clear DeepSeek conversation context.", ex);
+                ShowTextResult(ex.Message, "DeepSeek 会话清空失败");
+            }
+            finally
+            {
+                isDeepSeekBusy = false;
+            }
+            await UpdateConversationStatusAsync();
+        }
+
+        private async Task UpdateConversationStatusAsync()
+        {
+            try
+            {
+                ConversationContextInfo contextInfo =
+                    await translationService.GetConversationContextInfoAsync();
+                conversationStatusLabel.Text =
+                    "会话：" + contextInfo.TurnCount + "/6 轮"
+                    + "    估算 Token：" + contextInfo.EstimatedTokenCount.ToString("N0")
+                    + "/" + contextInfo.MaximumTokenCount.ToString("N0")
+                    + "（" + contextInfo.UsagePercent + "%）"
+                    + Environment.NewLine
+                    + contextInfo.Recommendation;
+                conversationStatusLabel.ForeColor = contextInfo.ShouldClear
+                    ? Color.FromArgb(183, 70, 45)
+                    : Color.FromArgb(56, 74, 118);
+                conversationStatusPanel.BackColor = contextInfo.ShouldClear
+                    ? Color.FromArgb(255, 239, 232)
+                    : Color.FromArgb(241, 245, 255);
+                clearContextButton.Enabled = contextInfo.TurnCount > 0;
+                conversationStatusPanel.Visible = true;
+                conversationStatusPanel.BringToFront();
+                ClientSize = new Size(ClientSize.Width, conversationStatusPanel.Bottom);
+            }
+            catch (Exception ex)
+            {
+                ApplicationLogger.Error("Failed to update DeepSeek conversation status.", ex);
+            }
+        }
+
+        private async void clearContextButton_Click(object sender, EventArgs e)
+        {
+            await ClearDeepSeekContextAsync();
+        }
+
+        private void txtContent_TextChanged(object sender, EventArgs e)
+        {
+            UpdateApplicationResults();
+        }
+
+        private void UpdateApplicationResults()
+        {
+            translationResultBrowser.Visible = false;
+            conversationStatusPanel.Visible = false;
+            resultList.Items.Clear();
+            resultImages.Images.Clear();
+
+            List<ApplicationSearchResult> matches = ApplicationSearchService.Search(
+                applications, txtContent.Text, MAX_APPLICATION_RESULTS).ToList();
+            foreach (ApplicationSearchResult application in matches)
+            {
+                int imageIndex = -1;
+                if (application.Icon != null)
+                {
+                    resultImages.Images.Add(application.Icon);
+                    imageIndex = resultImages.Images.Count - 1;
+                }
+
+                var item = new ListViewItem(application.Name, imageIndex) { Tag = application };
+                item.SubItems.Add(application.Path);
+                resultList.Items.Add(item);
+            }
+
+            SetResultListVisible(resultList.Items.Count > 0);
+            ApplicationLogger.Info(
+                "Application query evaluated. Query length: " + txtContent.Text.Length
+                + "; indexed count: " + applications.Count
+                + "; matched count: " + matches.Count
+                + "; result list visible: " + resultList.Visible);
+        }
+
+        private void ShowTextResult(string text, string details)
+        {
+            resultList.Items.Clear();
+            resultImages.Images.Clear();
+            resultList.Visible = false;
+            conversationStatusPanel.Visible = false;
+            translationResultBrowser.DocumentText = TranslationHtmlRenderer.Render(details, text);
+            translationResultBrowser.Visible = true;
+            translationResultBrowser.BringToFront();
+            ClientSize = new Size(ClientSize.Width, translationResultBrowser.Bottom);
+        }
+
+        private async Task ShowWebSearchChoicesAsync(string query)
+        {
+            List<WebSearchResult> results = webSearchService.GetProviderChoices(query);
+            ShowWebSearchResults(results);
+
+            try
+            {
+                List<WebSearchResult> googleResults = await webSearchService.SearchGoogleAsync(query, 8);
+                if (!string.Equals(txtContent.Text.Trim(), query, StringComparison.Ordinal))
+                {
+                    return;
+                }
+
+                results.AddRange(googleResults);
+                ShowWebSearchResults(results);
+            }
+            catch (Exception ex)
+            {
+                ApplicationLogger.Error("Failed to load selectable Google results.", ex);
+            }
+        }
+
+        private void ShowWebSearchResults(IEnumerable<WebSearchResult> results)
+        {
+            translationResultBrowser.Visible = false;
+            resultList.Items.Clear();
+            resultImages.Images.Clear();
+            resultImages.Images.Add(SystemIcons.Information);
+
+            foreach (WebSearchResult result in results)
+            {
+                var item = new ListViewItem(result.Title, 0) { Tag = result };
+                string snippet = (result.Snippet ?? string.Empty)
+                    .Replace("\r", " ")
+                    .Replace("\n", " ");
+                item.ToolTipText = result.Title + Environment.NewLine + snippet;
+                item.SubItems.Add(result.Provider + " · " + snippet);
+                resultList.Items.Add(item);
+            }
+
+            SetResultListVisible(resultList.Items.Count > 0);
+            ApplicationLogger.Info("Selectable web search results displayed. Count: " + resultList.Items.Count);
+        }
+
+        private void SetResultListVisible(bool visible)
+        {
+            translationResultBrowser.Visible = false;
+            conversationStatusPanel.Visible = false;
+            resultList.Visible = visible;
+            ClientSize = new Size(ClientSize.Width, visible ? resultList.Bottom : txtContent.Bottom + 3);
+        }
+
+        private void MoveResultSelection(int direction)
+        {
+            int selectedIndex = resultList.SelectedIndices.Count > 0 ? resultList.SelectedIndices[0] : -1;
+            int newIndex = selectedIndex < 0
+                ? (direction > 0 ? 0 : resultList.Items.Count - 1)
+                : Math.Max(0, Math.Min(resultList.Items.Count - 1, selectedIndex + direction));
+            resultList.Items[newIndex].Selected = true;
+            resultList.Items[newIndex].Focused = true;
+            resultList.EnsureVisible(newIndex);
+        }
+
+        private bool OpenSelectedResult()
+        {
+            if (!resultList.Visible || resultList.SelectedItems.Count == 0)
+            {
+                return false;
+            }
+
+            object selectedResult = resultList.SelectedItems[0].Tag;
+            var webResult = selectedResult as WebSearchResult;
+            if (webResult != null)
+            {
+                ApplicationLogger.Info("Opening selected web result. Provider: " + webResult.Provider);
+                SearchContent(webResult.Url, StrTypes.Url);
+                return true;
+            }
+
+            var application = selectedResult as ApplicationSearchResult;
+            if (application == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                if (!File.Exists(application.Path))
+                {
+                    throw new FileNotFoundException("程序入口不存在。", application.Path);
+                }
+                Process.Start(new ProcessStartInfo { FileName = application.Path, UseShellExecute = true });
+                ApplicationLogger.Info("Application launched from selected result. Name: " + application.Name);
+                Hide();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ApplicationLogger.Error("Failed to launch selected application. Name: " + application.Name, ex);
+                ShowError("无法打开程序 “" + application.Name + "”", ex);
+                return true;
+            }
+        }
+
+        private void resultList_DoubleClick(object sender, EventArgs e)
+        {
+            OpenSelectedResult();
+        }
+
+        private void startupMenuItem_Click(object sender, EventArgs e)
+        {
+            bool enabled = !startupMenuItem.Checked;
+            try
+            {
+                StartupManager.SetEnabled(enabled);
+                startupMenuItem.Checked = enabled;
+            }
+            catch (Exception ex)
+            {
+                ShowError("设置开机启动失败", ex);
+            }
+        }
+
+        private void openLogMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ApplicationLogger.Info("Opening log directory.");
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = ApplicationLogger.LogDirectory,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                ShowError("无法打开日志目录", ex);
+            }
+        }
+
+        private static void ShowError(string context, Exception exception)
+        {
+            ApplicationLogger.Error(context, exception);
+            MessageBox.Show(context + "：" + exception.Message, "SearchBar", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
 
@@ -366,6 +853,8 @@ namespace SearchBar
 
         private void SearchBox_FormClosing(object sender, FormClosingEventArgs e)
         {
+            ApplicationLogger.Info("SearchBox closing. Unregistering Ctrl+Q hotkey.");
+            HotKey.UnregisterHotKey(Handle, 100);
         }
 
         private void SearchBox_Deactivate(object sender, EventArgs e)
@@ -394,12 +883,28 @@ namespace SearchBar
 
         private void openSearch_Click(object sender, EventArgs e)
         {
-            this.Show();
+            ShowSearchWindow();
         }
 
         private void nofityIcon_Click(object sender, EventArgs e)
         {
-            this.Show();
+            // Kept for the designer event reference. Runtime uses MouseClick to distinguish buttons.
+        }
+
+        private void nofityIcon_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ShowSearchWindow();
+            }
+        }
+
+        private void ShowSearchWindow()
+        {
+            TopMost = true;
+            Show();
+            Activate();
+            txtContent.Focus();
         }
     }
 }

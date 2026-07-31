@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "E:\\Code\\SearchBar\\SearchBar\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|e:\\code\\searchbar\\searchbar\\searchbar\\config\\config.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\config\\config.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|e:\\code\\searchbar\\searchbar\\searchbar\\searchbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\searchbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,8 +11,84 @@
       "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\addsymbols.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\realization\\deepseektranslationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\realization\\deepseektranslationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{858B8265-7FD9-46FF-9DE1-9F0E44F81A9D}|Calc\\Calc.csproj|E:\\Code\\SearchBar\\SearchBar\\calc\\calcexpression.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{858B8265-7FD9-46FF-9DE1-9F0E44F81A9D}|Calc\\Calc.csproj|solutionrelative:calc\\calcexpression.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\common\\apphotkey.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\common\\apphotkey.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\common\\common.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\common\\common.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\common\\createcontrolwithenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\common\\createcontrolwithenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\common\\createreadobj.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\common\\createreadobj.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\common\\fileoperation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\common\\fileoperation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\common\\hotkey.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\common\\hotkey.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\common\\startupmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\common\\startupmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\common\\stringextend.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\common\\stringextend.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\enums\\controltypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\enums\\controltypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\enums\\translatetypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\enums\\translatetypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\interface\\icreatecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\interface\\icreatecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\interface\\ireadconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\interface\\ireadconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\realization\\createtranslatecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\realization\\createtranslatecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\realization\\createcalccontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\realization\\createcalccontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\realization\\readfromjson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\realization\\readfromjson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|E:\\Code\\SearchBar\\SearchBar\\searchbar\\setpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D87EA98-0C87-4D23-B2EA-073DDE31D92C}|SearchBar\\SearchBar.csproj|solutionrelative:searchbar\\setpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +106,11 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
               "$type": "Bookmark",
@@ -42,13 +118,25 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "Name": "ST:0:0:{55f480fa-fbef-4386-8c1c-ea8d10c9f542}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             }
           ]
         },
         {
           "DockedWidth": 175,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 15,
           "Children": [
             {
               "$type": "Bookmark",
@@ -71,42 +159,261 @@
               "Name": "ST:135:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "TranslateTypes.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Enums\\TranslateTypes.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Enums\\TranslateTypes.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Enums\\TranslateTypes.cs",
+              "RelativeToolTip": "SearchBar\\Enums\\TranslateTypes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswBEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:21:28.12Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ControlTypes.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Enums\\ControlTypes.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Enums\\ControlTypes.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Enums\\ControlTypes.cs",
+              "RelativeToolTip": "SearchBar\\Enums\\ControlTypes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswBwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:21:28.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "StringExtend.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Common\\StringExtend.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Common\\StringExtend.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Common\\StringExtend.cs",
+              "RelativeToolTip": "SearchBar\\Common\\StringExtend.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswG4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:21:27.935Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "StartupManager.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Common\\StartupManager.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Common\\StartupManager.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Common\\StartupManager.cs",
+              "RelativeToolTip": "SearchBar\\Common\\StartupManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:21:27.842Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "HotKey.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Common\\HotKey.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Common\\HotKey.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Common\\HotKey.cs",
+              "RelativeToolTip": "SearchBar\\Common\\HotKey.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswCYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:21:27.748Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FileOperation.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Common\\FileOperation.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Common\\FileOperation.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Common\\FileOperation.cs",
+              "RelativeToolTip": "SearchBar\\Common\\FileOperation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswFEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:21:27.624Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CreateReadObj.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Common\\CreateReadObj.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Common\\CreateReadObj.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Common\\CreateReadObj.cs",
+              "RelativeToolTip": "SearchBar\\Common\\CreateReadObj.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:21:27.497Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CreateControlWithEnum.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Common\\CreateControlWithEnum.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Common\\CreateControlWithEnum.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Common\\CreateControlWithEnum.cs",
+              "RelativeToolTip": "SearchBar\\Common\\CreateControlWithEnum.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswCgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:21:27.393Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Common.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Common\\Common.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Common\\Common.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Common\\Common.cs",
+              "RelativeToolTip": "SearchBar\\Common\\Common.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswCgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:21:27.278Z"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "config.json",
-              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Config\\config.json",
-              "RelativeDocumentMoniker": "SearchBar\\Config\\config.json",
-              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Config\\config.json",
-              "RelativeToolTip": "SearchBar\\Config\\config.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-12-09T08:11:23.509Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AddSymbols.cs",
-              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\AddSymbols.cs",
-              "RelativeDocumentMoniker": "SearchBar\\AddSymbols.cs",
-              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\AddSymbols.cs",
-              "RelativeToolTip": "SearchBar\\AddSymbols.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-09-05T07:11:29.525Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "SearchBox.cs",
               "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\SearchBox.cs",
               "RelativeDocumentMoniker": "SearchBar\\SearchBox.cs",
               "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\SearchBox.cs",
               "RelativeToolTip": "SearchBar\\SearchBox.cs",
-              "ViewState": "AgIAACoBAAAAAAAAAAAmwFQBAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAGsDAAAAAAAAAAAAAD4BAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2023-03-08T03:35:15.565Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ReadFromJson.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Realization\\ReadFromJson.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Realization\\ReadFromJson.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Realization\\ReadFromJson.cs",
+              "RelativeToolTip": "SearchBar\\Realization\\ReadFromJson.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswDcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:21:28.932Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "SetPanel.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\SetPanel.cs",
+              "RelativeDocumentMoniker": "SearchBar\\SetPanel.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\SetPanel.cs",
+              "RelativeToolTip": "SearchBar\\SetPanel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswI8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:22:09.546Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Properties\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Properties\\AssemblyInfo.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Properties\\AssemblyInfo.cs",
+              "RelativeToolTip": "SearchBar\\Properties\\AssemblyInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswCQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:21:29.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "CreateCalcControl.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Realization\\CreateCalcControl.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Realization\\CreateCalcControl.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Realization\\CreateCalcControl.cs",
+              "RelativeToolTip": "SearchBar\\Realization\\CreateCalcControl.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswFcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:21:28.512Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "CreateTranslateControl.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Realization\\CreateTranslateControl.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Realization\\CreateTranslateControl.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Realization\\CreateTranslateControl.cs",
+              "RelativeToolTip": "SearchBar\\Realization\\CreateTranslateControl.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswF0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:21:28.415Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppHotKey.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Common\\AppHotKey.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Common\\AppHotKey.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Common\\AppHotKey.cs",
+              "RelativeToolTip": "SearchBar\\Common\\AppHotKey.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswEoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:21:27.142Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "IReadConfig.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Interface\\IReadConfig.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Interface\\IReadConfig.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Interface\\IReadConfig.cs",
+              "RelativeToolTip": "SearchBar\\Interface\\IReadConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswBIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:21:28.308Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ICreateControl.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Interface\\ICreateControl.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Interface\\ICreateControl.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Interface\\ICreateControl.cs",
+              "RelativeToolTip": "SearchBar\\Interface\\ICreateControl.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswBQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T09:21:28.2Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AddSymbols.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\AddSymbols.cs",
+              "RelativeDocumentMoniker": "SearchBar\\AddSymbols.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\AddSymbols.cs",
+              "RelativeToolTip": "SearchBar\\AddSymbols.cs",
+              "ViewState": "AgIAAOMAAAAAAAAAAAAYwNwAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-09-05T07:11:29.525Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CalcExpression.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\Calc\\CalcExpression.cs",
+              "RelativeDocumentMoniker": "Calc\\CalcExpression.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\Calc\\CalcExpression.cs",
+              "RelativeToolTip": "Calc\\CalcExpression.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswJAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-23T06:16:48.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DeepSeekTranslationService.cs",
+              "DocumentMoniker": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Realization\\DeepSeekTranslationService.cs",
+              "RelativeDocumentMoniker": "SearchBar\\Realization\\DeepSeekTranslationService.cs",
+              "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Realization\\DeepSeekTranslationService.cs",
+              "RelativeToolTip": "SearchBar\\Realization\\DeepSeekTranslationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswEUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T08:57:09.821Z"
             },
             {
               "$type": "Document",
@@ -116,7 +423,7 @@
               "RelativeDocumentMoniker": "SearchBar\\Program.cs",
               "ToolTip": "E:\\Code\\SearchBar\\SearchBar\\SearchBar\\Program.cs",
               "RelativeToolTip": "SearchBar\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2023-09-07T03:32:47.334Z"
             }

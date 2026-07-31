@@ -16,28 +16,18 @@ namespace SearchBar
     {
         public static StrTypes IsUrlOrIp(this string str)
         {
-            var words = GetConfigValue("IgnoreKeyWords").Split(';').ToList();
-            var sts = str.ToLower().Split(' ');
-            var tag = words.Exists(p => sts.Contains(p));//特殊地址处理 asp.net
-            if (tag || sts.Length > 1)//带有自定搜索
+            string normalizedUrl;
+            if (!WebAddressParser.TryNormalize(str, out normalizedUrl))
             {
                 return StrTypes.String;
             }
-            if (str.IsMatch(@"(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d).(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)"))
-            {
-                return StrTypes.IP;
-            }
-            //if (str.IsMatch(@"^((https|http|ftp|rtsp|mms)?(://)?)[^s]+"))//url
-            if (str.IsMatch(@"^(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]"))//url
-            {
-                return StrTypes.Url;
-            }
-            else
-            {
-                var strs = GetConfigValue("domainName").Split(';').ToList();
-                str = str.LastIndexOf(".") > -1 ? str.Substring(str.LastIndexOf(".")) : str;
-                return strs.Contains(str) ? StrTypes.Url : StrTypes.String;
-            }
+
+            Uri uri;
+            System.Net.IPAddress address;
+            return Uri.TryCreate(normalizedUrl, UriKind.Absolute, out uri)
+                && System.Net.IPAddress.TryParse(uri.Host, out address)
+                ? StrTypes.IP
+                : StrTypes.Url;
         }
 
         public static string GetConfigValue(this string key)

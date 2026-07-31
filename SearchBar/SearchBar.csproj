@@ -181,14 +181,22 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Common\AppHotKey.cs" />
+    <Compile Include="Common\ApplicationLogger.cs" />
+    <Compile Include="Common\ApplicationSearchService.cs" />
     <Compile Include="Common\Common.cs" />
     <Compile Include="Common\CreateControlWithEnum.cs" />
     <Compile Include="Common\CreateReadObj.cs" />
     <Compile Include="Common\RegexJudge.cs" />
+    <Compile Include="Common\StartupManager.cs" />
+    <Compile Include="Common\TranslationHtmlRenderer.cs" />
+    <Compile Include="Common\TokenEstimator.cs" />
+    <Compile Include="Common\WebAddressParser.cs" />
+    <Compile Include="Common\WebSearchService.cs" />
     <Compile Include="Enums\TranslateTypes.cs" />
     <Compile Include="Realization\CreateTranslateControl.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Realization\DeepSeekTranslationService.cs" />
     <Compile Include="Realization\CreateCalcControl.cs">
       <SubType>Form</SubType>
     </Compile>
